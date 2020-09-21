@@ -14,6 +14,10 @@ public class ShoppingBag {
         this.bag = new GroceryItem[START_BAG_SIZE];
     }
 
+    public int getSize() {
+        return this.size
+    }
+
     /**
      * Helper function used to find the index of the the
      * first instance of the specified GroceryItem in the ShoppingBag.
