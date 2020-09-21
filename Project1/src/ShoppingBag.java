@@ -1,5 +1,3 @@
-
-
 public class ShoppingBag {
     int START_BAG_SIZE = 2;
     double SALES_TAX = 0.06625;
@@ -14,8 +12,12 @@ public class ShoppingBag {
         this.bag = new GroceryItem[START_BAG_SIZE];
     }
 
+    /**
+     *
+     * @return returns number of items in bag
+     */
     public int getSize() {
-        return this.size
+        return this.size;
     }
 
     /**
@@ -24,7 +26,7 @@ public class ShoppingBag {
      * @param item GroceryItem that you want the index of
      * @return returns index of found item. returns -1 if not found
      */
-    private int find(GroceryItem item) {
+    private int find (GroceryItem item) {
         for (int i = 0; i < this.size; i += 1) {
             if (item.equals(this.bag[i])) {
                 return i;
