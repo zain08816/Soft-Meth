@@ -1,32 +1,48 @@
+/**
+ * Runs the project and manages input/output
+ * @author Clarissa Hwang, Zain Ali
+ */
 import java.util.Scanner;
 
 public class Shopping {
-    private ShoppingBag bag = new ShoppingBag(); 
+    private ShoppingBag bag = new ShoppingBag();
 
+    /**
+     * Adds specified item to the ShoppingBag
+     * @param name String name of item being added
+     * @param price double price of item being added
+     * @param taxable boolean if item being added is taxable
+     */
     private void add(String name, double price, boolean taxable) {
-        
-
-
         GroceryItem new_item = new GroceryItem(name, price, taxable);
         bag.add(new_item);
+        System.out.printf("%s added to the bag%n", name);
     }
 
+    /**
+     * Removes specified item to the ShoppingBag
+     * @param name String name of item being removed
+     * @param price double price of item being removed
+     * @param taxable boolean if item being removed is taxable
+     */
     private void remove(String name, double price, boolean taxable ){
         GroceryItem remove = new GroceryItem(name, price, taxable);
-        Boolean check = bag.remove(remove);
-        if (check == true) {
-            String remove_statement = String.format("%s %.2f removed.", name, price);
-            System.out.println(remove_statement);
+        boolean removed = bag.remove(remove);
+
+        if (removed) {
+            System.out.printf("%s %.2f removed.%n", name, price);
         } else {
             System.out.println("Unable to remove, this item is not in the bag.");
         }
     }
 
+    /**
+     * Prints out the contents of the ShoppingBag
+     */
     private void display() {
         if (bag.getSize() != 0) {
             String item = bag.getSize() == 1 ? "item" : "items";
-            String result = String.format("**You have %d %s in the bag.", bag.getSize(), item);
-            System.out.println(result);
+            System.out.printf("**You have %d %s in the bag.%n", bag.getSize(), item);
             bag.print();
             System.out.println("**End of list");
         } else {
@@ -34,28 +50,30 @@ public class Shopping {
         }
     }
 
-    private void check_out() {
+    /**
+     * Prints out the contents of the ShoppingBag and clears the bag.
+     * Sales total, Sales tax, and total amount payed is also shown.
+     */
+    private void checkOut() {
         if (bag.getSize() == 0) {
             System.out.println("Unable to check out, the bag is empty!");
         } else {
             String item = bag.getSize() == 1 ? "item" : "items";
-            String checkOut = String.format("**Checking out %d %s.", bag.getSize(), item);
-            System.out.println(checkOut);
+            System.out.printf("**Checking out %d %s.%n", bag.getSize(), item);
             bag.print();
-            System.out.println(String.format("*Sales total: $%.2f", bag.salesPrice()));
-            System.out.println(String.format("*Sales tax: $%.2f", bag.salesTax()));
-            System.out.println(String.format("*Total amount paid: $%.2f", bag.salesPrice() + bag.salesTax()));
-
+            System.out.printf("*Sales total: $%.2f%n", bag.salesPrice());
+            System.out.printf("*Sales tax: $%.2f%n", bag.salesTax());
+            System.out.printf("*Total amount paid: $%.2f%n", bag.salesPrice() + bag.salesTax());
+            bag = new ShoppingBag();
         }
-
-
     }
 
-    private void quit() {
 
-    }
-
+    /**
+     * Runs the program and handles input/output
+     */
     public void run() {
+        System.out.println("Let's start shopping!");
         Scanner reader = new Scanner(System.in);
 
         while (reader.hasNextLine()) {
@@ -79,22 +97,25 @@ public class Shopping {
                     break;
 
                 case 'C':
-
+                    checkOut();
                     break;
 
                 case 'Q':
-                    if (bag.getSize() == 0) {
-                        System.out.println();
+                    if (bag.getSize() != 0) {
+                        checkOut();
                     }
+                    System.out.println("Thanks for shopping with us!");
+                    reader.close();
+                    System.exit(0);
                     break;
-                
-                default:
-                    System.out.println();
-            }
-             
-        }
-        reader.close();
 
+                default:
+                    System.out.println("Invalid command!");
+            }
+        }
+
+        reader.close();
+        System.exit(0);
     }
 
 }
