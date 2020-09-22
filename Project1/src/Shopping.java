@@ -16,7 +16,7 @@ public class Shopping {
     private void add(String name, double price, boolean taxable) {
         GroceryItem new_item = new GroceryItem(name, price, taxable);
         bag.add(new_item);
-        System.out.printf("%s added to the bag%n", name);
+        System.out.printf("%s added to the bag.%n", name);
     }
 
     /**
@@ -78,6 +78,7 @@ public class Shopping {
 
         while (reader.hasNextLine()) {
             String line = reader.nextLine();
+            if (line.equals("")) continue;
             char command = line.charAt(0);
             String[] segments;
 
