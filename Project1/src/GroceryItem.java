@@ -46,11 +46,15 @@ public class GroceryItem {
             return true;
         }
 
-        GroceryItem compare = (GroceryItem) obj;
+        if (obj instanceof GroceryItem) {
+            GroceryItem compare = (GroceryItem) obj;
 
-        return this.name.equals(compare.name) &&
-                this.price == compare.price &&
-                this.taxable == compare.taxable;
+            return this.name.equals(compare.name) &&
+                    this.price == compare.price &&
+                    this.taxable == compare.taxable;
+        }
+
+        return false;
     }
 
     /**
