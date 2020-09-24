@@ -56,8 +56,8 @@ public class ShoppingBag {
     }
 
     /**
-     * Adds and element into the ShoppingBag. Grows the ShoppingBag if
-     * there is not enough rooom to add.
+     * Adds an element into the ShoppingBag. Grows the ShoppingBag if
+     * there is not enough room to add.
      * @param item GroceryItem that you want to add to the ShoppingBag
      */
     public void add(GroceryItem item) {
