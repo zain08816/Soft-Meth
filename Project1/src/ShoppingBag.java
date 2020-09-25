@@ -134,41 +134,61 @@ public class ShoppingBag {
     public static void main(String[] args) {
         ShoppingBag testBag = new ShoppingBag();
 
-        testBag.print();
-        System.out.println(testBag.salesPrice());
-        System.out.println(testBag.salesTax());
-
         GroceryItem item1 = new GroceryItem("test1", 1, true);
         GroceryItem item2 = new GroceryItem("test2", 2, true);
         GroceryItem item3 = new GroceryItem("test3", 3, false);
         GroceryItem item4 = new GroceryItem("test4", 4, false);
         GroceryItem item5 = new GroceryItem("test5", 1, true);
         GroceryItem item6 = new GroceryItem("test6", 2, true);
-        GroceryItem item7 = new GroceryItem("test7", 3, false);
-        GroceryItem item8 = new GroceryItem("test8", 4, false);
 
+
+        System.out.println("Test Case 1: (Adding item1)");
+        System.out.println("Expected:");
+        System.out.println("test1: $1.00 : is taxable");
+        System.out.println("Result:");
         testBag.add(item1);
         testBag.print();
-        System.out.println(testBag.salesPrice());
-        System.out.println(testBag.salesTax());
 
+        System.out.println("Test Case 2: (Adding item2)");
+        System.out.println("Expected:");
+        System.out.println("test1: $1.00 : is taxable");
+        System.out.println("test2: $2.00 : is taxable");
+        System.out.println("Result:");
         testBag.add(item2);
+        testBag.print();
+
+        System.out.println("Test Case 3: (Growing bag)");
+        System.out.println("Expected:");
+        System.out.println("Current bag length: 5 | Current items in bag: 2");
+        System.out.println("Current bag length: 10 | Current items in bag: 6");
+        System.out.println("Result:");
+        System.out.printf("Current bag length: %d | Current items in bag: %d%n", testBag.bag.length, testBag.getSize());
         testBag.add(item3);
         testBag.add(item4);
         testBag.add(item5);
         testBag.add(item6);
-        testBag.add(item7);
-        testBag.add(item8);
+        System.out.printf("Current bag length: %d | Current items in bag: %d%n", testBag.bag.length, testBag.getSize());
+
+
+        System.out.println("Test Case 4: (Removing item3 (middle item))");
+        System.out.println("Expected:");
+        System.out.printf("test1: $1.00 : is taxable %ntest2: $2.00 : is taxable %ntest6: $2.00 : is taxable %ntest4: $4.00 : tax free %ntest5: $1.00 : is taxable%n");
+        System.out.println("Result:");
+        testBag.remove(item3);
         testBag.print();
-        System.out.println(testBag.salesPrice());
-        System.out.println(testBag.salesTax());
 
-        testBag.remove(item2);
-        testBag.remove(item7);
+        System.out.println("Test Case 5: (Removing item5 (last item))");
+        System.out.println("Expected:");
+        System.out.printf("test1: $1.00 : is taxable %ntest2: $2.00 : is taxable %ntest6: $2.00 : is taxable %ntest4: $4.00 : tax free %n");
+        System.out.println("Result:");
+        testBag.remove(item5);
         testBag.print();
-        System.out.println(testBag.salesTax());
 
-
+        System.out.println("Test Case 6: (Calculating Sales Tax)");
+        System.out.println("Expected:");
+        System.out.printf("Sales tax $%.2f%n", 0.33);
+        System.out.println("Result:");
+        System.out.printf("Sales tax $%.2f%n", testBag.salesTax());
 
     }
 }
