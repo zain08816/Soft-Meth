@@ -7,9 +7,21 @@ public class Date implements Comparable<Date> {
     private int day;
 
     /**
-     * return 0, 1, or -1
-     * @param date
-     * @return
+     * Constructor for Date
+     * @param day int day of the month
+     * @param month int month of the year
+     * @param year int year
+     */
+    public Date(int day, int month, int year) {
+        this.day = day;
+        this.month = month;
+        this.year = year;
+    }
+
+    /**
+     * Compare dates to eachother
+     * @param date date you want to compare to
+     * @return return 0 if equal, 1 if greater than, or -1 is lessthan
      */
     @Override
     public int compareTo(Date date) {
@@ -17,8 +29,8 @@ public class Date implements Comparable<Date> {
     }
 
     /**
-     * in the format mm/dd/yyyy
-     * @return
+     * Converts data in class to a string
+     * @return returns string in the format mm/dd/yyyy
      */
     @Override
     public String toString() {
@@ -26,8 +38,8 @@ public class Date implements Comparable<Date> {
     }
 
     /**
-     *
-     * @return
+     * Check if date is a real date.
+     * @return return true if date is valid, false if not valid
      */
     public boolean isValid() {
         return false;
