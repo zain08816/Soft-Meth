@@ -2,9 +2,9 @@
  * @author Clarissa Hwang, Zain Ali
  */
 public class Checking extends Account {
-    int MIN_BALANCE = 1500;
-    int MONTHLY_FEE = 25;
-    double ANNUAL_INTEREST_RATE = 0.0005;
+    private final int MIN_BALANCE = 1500;
+    private final int MONTHLY_FEE = 25;
+    private final double ANNUAL_INTEREST_RATE = 0.0005;
     private boolean directDeposit;
 
 
@@ -18,6 +18,28 @@ public class Checking extends Account {
     public Checking(Profile holder, Date dateOpen, double balance, boolean directDeposit) {
         super(holder, dateOpen, balance);
         this.directDeposit = directDeposit;
+    }
+
+    /**
+     * returns String with class information
+     * @return returns formatted string with account info
+     */
+    @Override
+    public String toString() {
+        return "";
+    }
+
+    /**
+     * Compare two Account objects to see if they are equal.
+     * @param obj object you that needs to be compared to Checking
+     * @return true if the objects are the same, false if not
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Checking checkingObject = (Checking) obj;
+        return checkingObject.getName().equals(this.getName());
     }
 
     /**

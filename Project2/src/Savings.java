@@ -2,10 +2,10 @@
  * @author Clarissa Hwang, Zain Ali
  */
 public class Savings extends Account {
-    int MIN_BALANCE = 300;
-    int MONTHLY_FEE = 5;
-    double ANNUAL_INTEREST_RATE = 0.0025;
-    double PROMOTIONAL_INTEREST_RATE = 0.0035;
+    private final int MIN_BALANCE = 300;
+    private final int MONTHLY_FEE = 5;
+    private final double ANNUAL_INTEREST_RATE = 0.0025;
+    private final double PROMOTIONAL_INTEREST_RATE = 0.0035;
     private boolean isLoyal;
 
 
@@ -23,6 +23,30 @@ public class Savings extends Account {
 
 
     /**
+     * returns String with class information
+     * @return returns formatted string with account info
+     */
+    @Override
+    public String toString() {
+        String loyal = isLoyal ? "*direct deposit account" : "";
+        return String.format("*Savings*%s* $%.2f*%s*%s", this.getName(),
+                this.getBalance(), this.getDateOpen().toString(), loyal);
+    }
+
+    /**
+     * Compare two Account objects to see if they are equal.
+     * @param obj object you that needs to be compared to Savings
+     * @return true if the objects are the same, false if not
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Savings savingsObject = (Savings) obj;
+        return savingsObject.getName().equals(this.getName());
+    }
+
+    /**
      *
      * @return
      */
@@ -38,5 +62,9 @@ public class Savings extends Account {
     @Override
     public double monthlyFee() {
         return 0.0;
+    }
+
+    public static void main(String[] args) {
+
     }
 }

@@ -1,11 +1,13 @@
+import java.util.Objects;
+
 /**
  * @author Clarissa Hwang, Zain Ali
  */
 public class MoneyMarket extends Account {
-    int MIN_BALANCE = 2500;
-    int MONTHLY_FEE = 12;
-    double ANNUAL_INTEREST_RATE = 0.0065;
-    int  MAX_WITHDRAWAL_WITHOUT_FEE = 6;
+    private final int MIN_BALANCE = 2500;
+    private final int MONTHLY_FEE = 12;
+    private final double ANNUAL_INTEREST_RATE = 0.0065;
+    private final int  MAX_WITHDRAWAL_WITHOUT_FEE = 6;
     private int withdrawals;
 
     /**
@@ -27,6 +29,28 @@ public class MoneyMarket extends Account {
     public void credit(double amount) {
         super.credit(amount);
         withdrawals += 1;
+    }
+
+    /**
+     * returns String with class information
+     * @return returns formatted string with account info
+     */
+    @Override
+    public String toString() {
+        return "";
+    }
+
+    /**
+     * Compare two Account objects to see if they are equal.
+     * @param obj object you that needs to be compared to MoneyMarket
+     * @return true if the objects are the same, false if not
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        MoneyMarket marketObject = (MoneyMarket) obj;
+        return marketObject.getName().equals(this.getName());
     }
 
     /**

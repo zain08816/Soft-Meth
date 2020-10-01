@@ -8,14 +8,13 @@ public class Date implements Comparable<Date> {
 
     /**
      * Constructor for Date
-     * @param day int day of the month
-     * @param month int month of the year
-     * @param year int year
+     * @param date String in the format of mm/dd/yyyy
      */
-    public Date(int day, int month, int year) {
-        this.day = day;
-        this.month = month;
-        this.year = year;
+    public Date(String date) {
+        String[] parts = date.split("/");
+        this.month = Integer.parseInt(parts[0]);
+        this.day = Integer.parseInt(parts[1]);
+        this.year = Integer.parseInt(parts[2]);
     }
 
     /**
@@ -34,7 +33,7 @@ public class Date implements Comparable<Date> {
      */
     @Override
     public String toString() {
-        return "";
+        return month + "/" + day + "/" + year;
     }
 
     /**
@@ -43,5 +42,9 @@ public class Date implements Comparable<Date> {
      */
     public boolean isValid() {
         return false;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new Date("02/09/2020"));
     }
 }

@@ -2,7 +2,7 @@
  * @author Clarissa Hwang, Zain Ali
  */
 public class AccountDatabase {
-    int INITIAL_SIZE = 5;
+    private final int INITIAL_SIZE = 5;
     private Account[] accounts;
     private int size;
 

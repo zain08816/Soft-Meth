@@ -40,7 +40,7 @@ public abstract class Account {
      */
     @Override
     public String toString() {
-        return "";
+        return getName() + " " + balance + " " + dateOpen.toString();
     }
 
     /**
@@ -68,14 +68,22 @@ public abstract class Account {
     }
 
     /**
-     *
-     * @return
+     * Return the open date of the account
+     * @return return Date of account open
+     */
+    public Date getDateOpen() {
+        return dateOpen;
+    }
+
+    /**
+     * abstract function to return Monthly Interest
+     * @return returns Monthly Interest
      */
     public abstract double monthlyInterest();
 
     /**
-     *
-     * @return
+     * abstract function to return Monthly Fee
+     * @return returns Monthly Fee
      */
     public abstract double monthlyFee();
 
