@@ -1,4 +1,5 @@
 import java.security.PublicKey;
+import java.util.Objects;
 
 /**
  * @author Clarissa Hwang, Zain Ali
@@ -16,6 +17,21 @@ public class Profile {
         this.fname = fname;
         this.lname = lname;
     }
+
+    /**
+     * Checking if two profile objets are equal
+     * @param obj profile object that you want to compare
+     * @return return true if same, false if not same
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Profile profile = (Profile) obj;
+        return Objects.equals(fname, profile.fname) &&
+                Objects.equals(lname, profile.lname);
+    }
+
 
     /**
      * Returns the first name of profile

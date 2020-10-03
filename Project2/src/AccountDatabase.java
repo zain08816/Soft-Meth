@@ -118,18 +118,33 @@ public class AccountDatabase {
      * sort in ascending order
      */
     private void sortByLastName() {
+//        for (int i = 0; i < size; i += 1) {
+//            String lastName = accounts[i].getLastName();
+//
+//        }
+//
+//        Account hold = accounts[2];
+//        accounts[2] = accounts[1];
+//        accounts[1] = hold;
     }
 
     /**
      *
      */
     public void printByDateOpen() {
+        sortByDateOpen();
     }
 
     /**
      *
      */
     public void printByLastName() {
+        sortByLastName();
+        for (int i = 0; i < size; i += 1) {
+            String lastName = accounts[i].getLastName();
+
+        }
+
     }
 
     /**

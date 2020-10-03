@@ -20,10 +20,19 @@ public class Date implements Comparable<Date> {
     /**
      * Compare dates to eachother
      * @param date date you want to compare to
-     * @return return 0 if equal, 1 if greater than, or -1 is lessthan
+     * @return return 0 if equal, 1 if greater than, or -1 is less than
      */
     @Override
     public int compareTo(Date date) {
+        if (year < date.year) return -1;
+        if (year > date.year) return 1;
+
+        if (month < date.month) return -1;
+        if (month > date.month) return 1;
+
+        if (day < date.day) return -1;
+        if (day > date.day) return 1;
+
         return 0;
     }
 
@@ -45,6 +54,11 @@ public class Date implements Comparable<Date> {
     }
 
     public static void main(String[] args) {
-        System.out.println(new Date("02/09/2020"));
+
+        Date test1 = new Date("01/07/2020");
+        Date test2 = new Date("02/09/2020");
+
+        System.out.println(test1.compareTo(test2));
     }
+
 }
