@@ -1,7 +1,5 @@
-import java.security.PublicKey;
-import java.util.Objects;
-
 /**
+ * Class to hold account holder name
  * @author Clarissa Hwang, Zain Ali
  */
 public class Profile {
@@ -28,8 +26,8 @@ public class Profile {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         Profile profile = (Profile) obj;
-        return Objects.equals(fname, profile.fname) &&
-                Objects.equals(lname, profile.lname);
+        return fname.equals(profile.fname) &&
+                lname.equals(profile.lname);
     }
 
 

@@ -1,4 +1,5 @@
 /**
+ * Abstract class for Accounts
  * @author Clarissa Hwang, Zain Ali
  */
 public abstract class Account {

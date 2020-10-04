@@ -1,4 +1,5 @@
 /**
+ * Account class for Savings
  * @author Clarissa Hwang, Zain Ali
  */
 public class Savings extends Account {
@@ -6,6 +7,7 @@ public class Savings extends Account {
     private final int MONTHLY_FEE = 5;
     private final double ANNUAL_INTEREST_RATE = 0.0025;
     private final double PROMOTIONAL_INTEREST_RATE = 0.0035;
+    private final double MONTHS_IN_YEAR = 12;
     private boolean isLoyal;
 
 
@@ -28,9 +30,9 @@ public class Savings extends Account {
      */
     @Override
     public String toString() {
-        String loyal = isLoyal ? "*direct deposit account" : "";
-        return String.format("*Savings*%s* $%.2f*%s*%s", this.getName(),
-                this.getBalance(), this.getDateOpen().toString(), loyal);
+        String special = isLoyal ? "*special Savings account*" : "";
+        return String.format("*Savings*%s* $%,.2f*%s%s", this.getName(),
+                this.getBalance(), this.getDateOpen().toString(), special);
     }
 
     /**
@@ -47,24 +49,23 @@ public class Savings extends Account {
     }
 
     /**
-     *
-     * @return
+     * Calculate monthly interest on account
+     * @return monthly interest for account
      */
     @Override
     public double monthlyInterest() {
-        return 0.0;
+        if (isLoyal) return getBalance()*(PROMOTIONAL_INTEREST_RATE/MONTHS_IN_YEAR);
+        else return getBalance()*(ANNUAL_INTEREST_RATE/MONTHS_IN_YEAR);
     }
 
     /**
-     *
-     * @return
+     * Calculate fee needed to be payed on account
+     * @return monthly fee for account;
      */
     @Override
     public double monthlyFee() {
-        return 0.0;
+        if (getBalance() >= MIN_BALANCE) return 0;
+        else return MONTHLY_FEE;
     }
 
-    public static void main(String[] args) {
-
-    }
 }

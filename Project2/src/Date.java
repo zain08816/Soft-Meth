@@ -1,4 +1,5 @@
 /**
+ * Class for holding and validating Dates
  * @author Clarissa Hwang, Zain Ali
  */
 public class Date implements Comparable<Date> {
@@ -46,11 +47,34 @@ public class Date implements Comparable<Date> {
     }
 
     /**
+     * Check if a year is a leap year
+     * @return true if leap year, false if not
+     */
+    private boolean isLeapYear() {
+        return (year % DateConsts.FOURTH_YEAR == 0)
+                && (year % DateConsts.CENTENNIAL != 0)
+                || (year % DateConsts.QUADRICENTENNIAL == 0);
+    }
+
+    /**
      * Check if date is a real date.
      * @return return true if date is valid, false if not valid
      */
     public boolean isValid() {
-        return false;
+        if (month < 1 || month > DateConsts.MAX_MONTHS) return false;
+        if (day < 1 || day > DateConsts.LONG_MAX_DAYS) return false;
+
+        if (month == DateConsts.FEBRUARY) {
+            if (isLeapYear()) return (day <= DateConsts.FEBRUARY_LEAP_YEAR_DAYS);
+            else return (day <= DateConsts.FEBRUARY_NORMAL_DAYS);
+        }
+
+        if (month == DateConsts.APRIL
+                || month == DateConsts.JUNE
+                || month == DateConsts.SEPTEMBER
+                || month == DateConsts.NOVEMBER) return (day <= DateConsts.SHORT_MAX_DAYS);
+
+        return true;
     }
 
     public static void main(String[] args) {

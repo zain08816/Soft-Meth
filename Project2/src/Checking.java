@@ -1,10 +1,12 @@
 /**
+ * Account class for Checking
  * @author Clarissa Hwang, Zain Ali
  */
 public class Checking extends Account {
     private final int MIN_BALANCE = 1500;
     private final int MONTHLY_FEE = 25;
     private final double ANNUAL_INTEREST_RATE = 0.0005;
+    private final double MONTHS_IN_YEAR = 12;
     private boolean directDeposit;
 
 
@@ -26,7 +28,9 @@ public class Checking extends Account {
      */
     @Override
     public String toString() {
-        return "";
+        String special = directDeposit ? "*direct deposit account*" : "";
+        return String.format("*Checking*%s* $%,.2f*%s%s", this.getName(),
+                this.getBalance(), this.getDateOpen().toString(), special);
     }
 
     /**
@@ -43,20 +47,22 @@ public class Checking extends Account {
     }
 
     /**
-     *
-     * @return
+     * Calculate monthly interest on account
+     * @return monthly interest for account
      */
     @Override
     public double monthlyInterest() {
-        return 0.0;
+        return getBalance()*(ANNUAL_INTEREST_RATE/MONTHS_IN_YEAR);
     }
 
     /**
-     *
-     * @return
+     * Calculate fee needed to be payed on account
+     * @return monthly fee for account;
      */
     @Override
     public double monthlyFee() {
-        return 0.0;
+        if (getBalance() >= MIN_BALANCE) return 0;
+        else if (directDeposit) return 0;
+        return MONTHLY_FEE;
     }
 }

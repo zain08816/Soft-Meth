@@ -1,4 +1,5 @@
 /**
+ * Class to run Project 2
  * @author Clarissa Hwang, Zain Ali
  */
 public class RunProject2 {

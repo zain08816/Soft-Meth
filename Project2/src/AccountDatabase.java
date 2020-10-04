@@ -1,4 +1,5 @@
 /**
+ * Holds all accounts and handles account functions
  * @author Clarissa Hwang, Zain Ali
  */
 public class AccountDatabase {
@@ -6,8 +7,9 @@ public class AccountDatabase {
     private Account[] accounts;
     private int size;
 
-    public void AccountDatabase() {
-        accounts = new Account[5];
+    public AccountDatabase() {
+        accounts = new Account[INITIAL_SIZE];
+        size = 0;
     }
 
     /**
@@ -18,9 +20,7 @@ public class AccountDatabase {
      */
     private int find(Account account) {
         for (int i = 0; i < size; i += 1) {
-            if (account.getClass() == accounts[i].getClass()) {
-                if (accounts[i].getName().equals(account.getName())) return i;
-            }
+            if (account.equals(accounts[i])) return i;
         }
         return -1;
     }
@@ -46,7 +46,7 @@ public class AccountDatabase {
      * @return return's false if account exists, true if added.
      */
     public boolean add(Account account) {
-        if (find(account) != -1) {
+        if (find(account) == -1) {
             if (size >= accounts.length) grow();
             accounts[size] = account;
             size += 1;
@@ -109,51 +109,80 @@ public class AccountDatabase {
     }
 
     /**
-     * sort in ascending order
+     * Sort accounts by date opened in ascending order
      */
     private void sortByDateOpen() {
+        for (int i = 0; i < size; i += 1) {
+            for (int j = i + 1; j < size; j += 1) {
+                if (accounts[i].getDateOpen().compareTo(accounts[j].getDateOpen()) >= 0) {
+                    Account hold = accounts[i];
+                    accounts[i] = accounts[j];
+                    accounts[j] = hold;
+                }
+            }
+        }
     }
 
     /**
-     * sort in ascending order
+     * Sort accounts by last name in ascending order
      */
     private void sortByLastName() {
-//        for (int i = 0; i < size; i += 1) {
-//            String lastName = accounts[i].getLastName();
-//
-//        }
-//
-//        Account hold = accounts[2];
-//        accounts[2] = accounts[1];
-//        accounts[1] = hold;
+        for (int i = 0; i < size; i += 1) {
+            for (int j = i + 1; j < size; j += 1) {
+                if (accounts[i].getLastName().compareTo(accounts[j].getLastName()) >= 0) {
+                    Account hold = accounts[i];
+                    accounts[i] = accounts[j];
+                    accounts[j] = hold;
+                }
+            }
+        }
     }
 
     /**
-     *
+     * Print accounts and information sorted by Date Opened
      */
     public void printByDateOpen() {
         sortByDateOpen();
+        for (int i = 0; i < size; i += 1) {
+            System.out.println("");
+            System.out.println(accounts[i]);
+            System.out.printf("-interest: $ %,.2f%n", accounts[i].monthlyInterest());
+            System.out.printf("-fee: $ %,.2f%n", accounts[i].monthlyFee());
+            System.out.printf("-new balance: $ %,.2f%n",
+                    accounts[i].getBalance() + accounts[i].monthlyInterest() - accounts[i].monthlyFee());
+        }
     }
 
     /**
-     *
+     * Print accounts and information sorted by Last name
      */
     public void printByLastName() {
         sortByLastName();
         for (int i = 0; i < size; i += 1) {
-            String lastName = accounts[i].getLastName();
-
+            System.out.println("");
+            System.out.println(accounts[i]);
+            System.out.printf("-interest: $ %,.2f%n", accounts[i].monthlyInterest());
+            System.out.printf("-fee: $ %,.2f%n", accounts[i].monthlyFee());
+            System.out.printf("-new balance: $ %,.2f%n",
+                    accounts[i].getBalance() + accounts[i].monthlyInterest() - accounts[i].monthlyFee());
         }
-
     }
 
     /**
-     *
+     * Print out all account in database in no specific order
      */
     public void printAccounts() {
+        for (int i = 0; i < size; i += 1) {
+            System.out.println(accounts[i]);
+        }
     }
 
-    public static void main( String[] args) {
-
+    /**
+     * Gives number of accounts in the database
+     * @return returns the size of account database
+     */
+    public int getSize() {
+        return size;
     }
+
 }

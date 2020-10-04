@@ -1,6 +1,5 @@
-import java.util.Objects;
-
 /**
+ * Account class for Money Market
  * @author Clarissa Hwang, Zain Ali
  */
 public class MoneyMarket extends Account {
@@ -8,6 +7,7 @@ public class MoneyMarket extends Account {
     private final int MONTHLY_FEE = 12;
     private final double ANNUAL_INTEREST_RATE = 0.0065;
     private final int  MAX_WITHDRAWAL_WITHOUT_FEE = 6;
+    private final double MONTHS_IN_YEAR = 12;
     private int withdrawals;
 
     /**
@@ -22,12 +22,12 @@ public class MoneyMarket extends Account {
     }
 
     /**
-     * increase the balance by amount
+     * Decreases the balance by amount
      * @param amount amount that you want to add
      */
     @Override
-    public void credit(double amount) {
-        super.credit(amount);
+    public void debit(double amount) {
+        super.debit(amount);
         withdrawals += 1;
     }
 
@@ -37,7 +37,11 @@ public class MoneyMarket extends Account {
      */
     @Override
     public String toString() {
-        return "";
+        String special = withdrawals == 1
+                ? String.format("%d withdrawal", withdrawals)
+                : String.format("%d withdrawals", withdrawals) ;
+        return String.format("*Money Market*%s* $%,.2f*%s*%s*", this.getName(),
+                this.getBalance(), this.getDateOpen().toString(), special);
     }
 
     /**
@@ -54,20 +58,23 @@ public class MoneyMarket extends Account {
     }
 
     /**
-     *
-     * @return
+     * Calculate monthly interest on account
+     * @return monthly interest for account
      */
     @Override
     public double monthlyInterest() {
-        return 0.0;
+        return getBalance()*(ANNUAL_INTEREST_RATE/MONTHS_IN_YEAR);
     }
 
     /**
-     *
-     * @return
+     * Calculate fee needed to be payed on account
+     * @return monthly fee for account;
      */
     @Override
     public double monthlyFee() {
-        return 0.0;
+        if (getBalance() >= MIN_BALANCE){
+            if (withdrawals > MAX_WITHDRAWAL_WITHOUT_FEE) return 0;
+        }
+        return MONTHLY_FEE;
     }
 }
