@@ -76,13 +76,4 @@ public class Date implements Comparable<Date> {
 
         return true;
     }
-
-    public static void main(String[] args) {
-
-        Date test1 = new Date("01/07/2020");
-        Date test2 = new Date("02/09/2020");
-
-        System.out.println(test1.compareTo(test2));
-    }
-
 }
