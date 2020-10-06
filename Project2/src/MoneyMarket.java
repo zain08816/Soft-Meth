@@ -32,6 +32,16 @@ public class MoneyMarket extends Account {
     }
 
     /**
+     * function used when the Database needs to debit an account.
+     * This debit should not count as a withdrawal to the account.
+     * 1 withdraw is removed from their account.
+     */
+    @Override
+    public void freeWithdraw() {
+        withdrawals -= 1;
+    }
+
+    /**
      * returns String with class information
      * @return returns formatted string with account info
      */
@@ -73,7 +83,7 @@ public class MoneyMarket extends Account {
     @Override
     public double monthlyFee() {
         if (getBalance() >= MIN_BALANCE){
-            if (withdrawals > MAX_WITHDRAWAL_WITHOUT_FEE) return 0;
+            if (withdrawals < MAX_WITHDRAWAL_WITHOUT_FEE) return 0;
         }
         return MONTHLY_FEE;
     }

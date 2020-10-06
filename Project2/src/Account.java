@@ -77,6 +77,16 @@ public abstract class Account {
     }
 
     /**
+     * function used for Money Market when the Database needs to debit an account.
+     * This debit should not count as a withdrawal to the account.
+     * 1 withdraw is removed from their account.
+     * If the Account does not Override this function, it does nothing.
+     */
+    public void freeWithdraw() {
+        return;
+    }
+
+    /**
      * abstract function to return Monthly Interest
      * @return returns Monthly Interest
      */

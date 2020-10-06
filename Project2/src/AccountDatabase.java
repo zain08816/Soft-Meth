@@ -144,12 +144,19 @@ public class AccountDatabase {
     public void printByDateOpen() {
         sortByDateOpen();
         for (int i = 0; i < size; i += 1) {
+            double credit = accounts[i].monthlyInterest();
+            double debit = accounts[i].monthlyFee();
+
             System.out.println("");
             System.out.println(accounts[i]);
-            System.out.printf("-interest: $ %,.2f%n", accounts[i].monthlyInterest());
-            System.out.printf("-fee: $ %,.2f%n", accounts[i].monthlyFee());
-            System.out.printf("-new balance: $ %,.2f%n",
-                    accounts[i].getBalance() + accounts[i].monthlyInterest() - accounts[i].monthlyFee());
+            System.out.printf("-interest: $ %,.2f%n", credit);
+            System.out.printf("-fee: $ %,.2f%n", debit);
+
+            accounts[i].credit(credit);
+            accounts[i].debit(debit);
+            accounts[i].freeWithdraw();
+
+            System.out.printf("-new balance: $ %,.2f%n", accounts[i].getBalance());
         }
     }
 
@@ -159,12 +166,19 @@ public class AccountDatabase {
     public void printByLastName() {
         sortByLastName();
         for (int i = 0; i < size; i += 1) {
+            double credit = accounts[i].monthlyInterest();
+            double debit = accounts[i].monthlyFee();
+
             System.out.println("");
             System.out.println(accounts[i]);
-            System.out.printf("-interest: $ %,.2f%n", accounts[i].monthlyInterest());
-            System.out.printf("-fee: $ %,.2f%n", accounts[i].monthlyFee());
-            System.out.printf("-new balance: $ %,.2f%n",
-                    accounts[i].getBalance() + accounts[i].monthlyInterest() - accounts[i].monthlyFee());
+            System.out.printf("-interest: $ %,.2f%n", credit);
+            System.out.printf("-fee: $ %,.2f%n", debit);
+
+            accounts[i].credit(credit);
+            accounts[i].debit(debit);
+            accounts[i].freeWithdraw();
+
+            System.out.printf("-new balance: $ %,.2f%n", accounts[i].getBalance());
         }
     }
 

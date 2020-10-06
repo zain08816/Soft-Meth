@@ -169,14 +169,14 @@ public class TransactionManager {
 
             case 'D':
                 System.out.println(" ");
-                System.out.println("--Printing accounts by date opened--");
+                System.out.println("--Printing statements by date opened--");
                 database.printByDateOpen();
                 System.out.println("--end of printing--");
                 break;
 
             case 'N':
                 System.out.println(" ");
-                System.out.println("--Printing accounts by last name--");
+                System.out.println("--Printing statements by last name--");
                 database.printByLastName();
                 System.out.println("--end of printing--");
                 break;

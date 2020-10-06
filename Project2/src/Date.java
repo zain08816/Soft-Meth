@@ -61,6 +61,7 @@ public class Date implements Comparable<Date> {
      * @return return true if date is valid, false if not valid
      */
     public boolean isValid() {
+        if (year < 0) return false;
         if (month < 1 || month > DateConsts.MAX_MONTHS) return false;
         if (day < 1 || day > DateConsts.LONG_MAX_DAYS) return false;
 
