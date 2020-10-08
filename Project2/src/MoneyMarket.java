@@ -12,7 +12,7 @@ public class MoneyMarket extends Account {
 
     /**
      * Money Market Constructor
-     * @param holder Profile holder of the account
+     * @param holder Profile holder of the acco
      * @param dateOpen Date account was opened
      * @param balance double initial balance
      */
@@ -83,7 +83,7 @@ public class MoneyMarket extends Account {
     @Override
     public double monthlyFee() {
         if (getBalance() >= MIN_BALANCE){
-            if (withdrawals < MAX_WITHDRAWAL_WITHOUT_FEE) return 0;
+            if (withdrawals <= MAX_WITHDRAWAL_WITHOUT_FEE) return 0;
         }
         return MONTHLY_FEE;
     }
