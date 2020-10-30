@@ -1,9 +1,9 @@
-package Model;
-
 /**
  * Account class for Savings
  * @author Clarissa Hwang, Zain Ali
  */
+package Model;
+
 public class Savings extends Account {
     private final int MIN_BALANCE = 300;
     private final int MONTHLY_FEE = 5;

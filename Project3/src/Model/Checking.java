@@ -1,8 +1,8 @@
-package Model;
 /**
  * Account class for Checking
  * @author Clarissa Hwang, Zain Ali
  */
+package Model;
 public class Checking extends Account {
     private final int MIN_BALANCE = 1500;
     private final int MONTHLY_FEE = 25;

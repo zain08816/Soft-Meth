@@ -1,8 +1,9 @@
-package Model;
+
 /**
  * Class for holding and validating Dates
  * @author Clarissa Hwang, Zain Ali
  */
+package Model;
 public class Date implements Comparable<Date> {
     private int year;
     private int month;
@@ -12,11 +13,10 @@ public class Date implements Comparable<Date> {
      * Constructor for Date
      * @param date String in the format of mm/dd/yyyy
      */
-    public Date(String date) {
-        String[] parts = date.split("/");
-        this.month = Integer.parseInt(parts[0]);
-        this.day = Integer.parseInt(parts[1]);
-        this.year = Integer.parseInt(parts[2]);
+    public Date(int month, int day, int year) {
+        this.month = month;
+        this.day = day;
+        this.year = year;
     }
 
     /**

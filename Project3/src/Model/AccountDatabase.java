@@ -1,8 +1,8 @@
-package Model;
 /**
  * Holds all accounts and handles account functions
  * @author Clarissa Hwang, Zain Ali
  */
+package Model;
 public class AccountDatabase {
     private final int INITIAL_SIZE = 5;
     private Account[] accounts;
@@ -186,10 +186,12 @@ public class AccountDatabase {
     /**
      * Print out all account in database in no specific order
      */
-    public void printAccounts() {
+    public String printAccounts() {
+        String buffer = "\n";
         for (int i = 0; i < size; i += 1) {
-            System.out.println(accounts[i]);
+            buffer  += accounts[i].toString() + "\n";
         }
+        return buffer+"\n";
     }
 
     /**

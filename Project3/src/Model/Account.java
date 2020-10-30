@@ -1,8 +1,9 @@
-package Model;
 /**
  * Abstract class for Accounts
  * @author Clarissa Hwang, Zain Ali
  */
+package Model;
+
 public abstract class Account {
     private Profile holder;
     private double balance;

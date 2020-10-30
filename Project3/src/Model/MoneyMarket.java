@@ -1,8 +1,8 @@
-package Model;
 /**
  * Account class for Money Market
  * @author Clarissa Hwang, Zain Ali
  */
+package Model;
 public class MoneyMarket extends Account {
     private final int MIN_BALANCE = 2500;
     private final int MONTHLY_FEE = 12;

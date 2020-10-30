@@ -1,43 +1,256 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<!--@author Clarissa Hwang, Zain Ali-->
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <TabPane layoutY="-3.0" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Controller.Controller">
+   <top>
+      <TabPane prefHeight="244.0" prefWidth="804.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-          <Tab text="Untitled Tab 1">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="361.0" prefWidth="579.0">
+          <Tab text="Open/Close Account">
+               <content>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <TextArea layoutX="14.0" layoutY="23.0" prefHeight="200.0" prefWidth="200.0" text="tab 1" />
+                        <VBox prefHeight="248.0" prefWidth="123.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" textAlignment="CENTER" wrappingWidth="145.0">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" textAlignment="CENTER" wrappingWidth="145.0">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date Open" textAlignment="CENTER" wrappingWidth="145.0">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="15.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Balance" textAlignment="CENTER" wrappingWidth="145.0">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="15.0" />
+                                 </VBox.margin>
+                              </Text>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="248.0" prefWidth="207.0">
+                           <children>
+                              <TextField fx:id="firstAccount" promptText="Henry">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="lastAccount" promptText="Rutgers">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <HBox prefHeight="10.0" prefWidth="200.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <TextField fx:id="month" promptText="MM">
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="5.0" right="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="/">
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" top="10.0" />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Text>
+                                    <TextField fx:id="day" promptText="DD">
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="/">
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" top="10.0" />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Text>
+                                    <TextField fx:id="year" promptText="YYYY">
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="balance" promptText="1766.00">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="125.0">
+                           <children>
+                              <RadioButton fx:id="checkingAccount" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="18.0" prefWidth="110.0" text="Checking">
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" left="15.0" top="15.0" />
+                                 </VBox.margin>
+                              </RadioButton>
+                              <RadioButton fx:id="savingsAccount" mnemonicParsing="false" prefHeight="18.0" prefWidth="110.0" text="Savings">
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" left="15.0" top="15.0" />
+                                 </VBox.margin>
+                              </RadioButton>
+                              <RadioButton fx:id="moneyMarketAccount" mnemonicParsing="false" prefHeight="18.0" prefWidth="110.0" text="Money Market">
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" left="15.0" top="15.0" />
+                                 </VBox.margin>
+                              </RadioButton>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="248.0" prefWidth="337.0">
+                           <children>
+                              <CheckBox fx:id="loyal" mnemonicParsing="false" prefHeight="18.0" prefWidth="178.0" text="Loyal Customer">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </CheckBox>
+                              <CheckBox fx:id="direct" mnemonicParsing="false" prefHeight="18.0" prefWidth="266.0" text="Direct Deposit">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </CheckBox>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Button onAction="#open" layoutX="14.0" layoutY="73.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" text="Open Account" />
+                                    <Button onAction="#close" layoutX="119.0" layoutY="73.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" text="Close Account" />
+                                    <Button onAction="#clearAll" layoutX="224.0" layoutY="73.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" text="Clear" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
                      </children>
-                  </AnchorPane>
-            </content>
+                  </HBox>
+               </content>
           </Tab>
-          <Tab text="Untitled Tab 2">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+          <Tab text="Deposit/Withdraw Funds">
+               <content>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <TextArea prefHeight="200.0" prefWidth="200.0" text="tab 1" />
+                        <VBox prefHeight="248.0" prefWidth="123.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" textAlignment="CENTER" wrappingWidth="145.0">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <Text  strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" textAlignment="CENTER" wrappingWidth="145.0">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Amount" textAlignment="CENTER" wrappingWidth="145.0">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </Text>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="248.0" prefWidth="207.0">
+                           <children>
+                              <TextField fx:id="firstFunds" promptText="Henry">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="lastFunds" promptText="Rutgers">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="amount" promptText="1766.00">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="125.0">
+                           <children>
+                              <RadioButton fx:id="checkingFunds" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="18.0" prefWidth="110.0" text="Checking">
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" left="15.0" top="15.0" />
+                                 </VBox.margin>
+                              </RadioButton>
+                              <RadioButton fx:id="savingsFunds" mnemonicParsing="false" prefHeight="18.0" prefWidth="110.0" text="Savings">
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" left="15.0" top="15.0" />
+                                 </VBox.margin>
+                              </RadioButton>
+                              <RadioButton fx:id="moneyMarketFunds" mnemonicParsing="false" prefHeight="18.0" prefWidth="110.0" text="Money Market">
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" left="15.0" top="15.0" />
+                                 </VBox.margin>
+                              </RadioButton>
+                           </children>
+                        </VBox>
+                        <AnchorPane prefHeight="248.0" prefWidth="327.0">
+                           <children>
+                              <Button onAction="#withdraw" layoutX="21.0" layoutY="63.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="125.0" text="Withdraw" />
+                              <Button onAction="#deposit" layoutX="21.0" layoutY="14.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="125.0" text="Deposit" />
+                              <Button onAction="#clearAll" layoutX="21.0" layoutY="111.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="125.0" text="Clear" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+               </content></Tab>
+            <Tab text="Account Database">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane prefHeight="150.0" prefWidth="804.0">
+                           <children>
+                              <SplitMenuButton layoutX="25.0" layoutY="24.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="129.0" text="Print">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" text="Name" />
+                                  <MenuItem mnemonicParsing="false" text="Test" />
+                                </items>
+                              </SplitMenuButton>
+                              <SplitMenuButton layoutX="21.0" layoutY="75.0" mnemonicParsing="false" text="SplitMenuButton">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" text="test" />
+                                  <MenuItem mnemonicParsing="false" text="stes43" />
+                                </items>
+                              </SplitMenuButton>
+                           </children>
+                        </AnchorPane>
                      </children>
                   </AnchorPane>
-            </content>
-          </Tab>
-            <Tab text="Untitled Tab">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <TextArea prefHeight="200.0" prefWidth="200.0" text="tab 3" />
-                     </children>
-                  </AnchorPane>
-              </content>
-            </Tab>
+               </content></Tab>
         </tabs>
       </TabPane>
-   </children>
-</AnchorPane>
+   </top>
+   <center>
+      <TextArea fx:id="output" prefHeight="354.0" prefWidth="804.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </TextArea>
+   </center>
+</BorderPane>
