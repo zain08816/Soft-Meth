@@ -3,6 +3,11 @@
  * @author Clarissa Hwang, Zain Ali
  */
 package Model;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class AccountDatabase {
     private final int INITIAL_SIZE = 5;
     private Account[] accounts;
@@ -142,56 +147,58 @@ public class AccountDatabase {
     /**
      * Print accounts and information sorted by Date Opened
      */
-    public void printByDateOpen() {
+    public String printByDateOpen() {
         sortByDateOpen();
+        String buffer = "\n";
         for (int i = 0; i < size; i += 1) {
             double credit = accounts[i].monthlyInterest();
             double debit = accounts[i].monthlyFee();
 
-            System.out.println("");
-            System.out.println(accounts[i]);
-            System.out.printf("-interest: $ %,.2f%n", credit);
-            System.out.printf("-fee: $ %,.2f%n", debit);
+            buffer += accounts[i].toString()+"\n";
+            buffer += String.format("-interest: $ %,.2f\n", credit);
+            buffer += String.format("-fee: $ %,.2f\n", debit);
 
             accounts[i].credit(credit);
             accounts[i].debit(debit);
             accounts[i].freeWithdraw();
 
-            System.out.printf("-new balance: $ %,.2f%n", accounts[i].getBalance());
+            buffer += String.format("-new balance: $ %,.2f\n", accounts[i].getBalance());
         }
+        return buffer;
     }
 
     /**
      * Print accounts and information sorted by Last name
      */
-    public void printByLastName() {
+    public String printByLastName() {
         sortByLastName();
+        String buffer = "\n";
         for (int i = 0; i < size; i += 1) {
             double credit = accounts[i].monthlyInterest();
             double debit = accounts[i].monthlyFee();
 
-            System.out.println("");
-            System.out.println(accounts[i]);
-            System.out.printf("-interest: $ %,.2f%n", credit);
-            System.out.printf("-fee: $ %,.2f%n", debit);
+            buffer += accounts[i].toString() + "\n";
+            buffer += String.format("-interest: $ %,.2f\n", credit);
+            buffer += String.format("-fee: $ %,.2f\n", debit);
 
             accounts[i].credit(credit);
             accounts[i].debit(debit);
             accounts[i].freeWithdraw();
 
-            System.out.printf("-new balance: $ %,.2f%n", accounts[i].getBalance());
+            buffer += String.format("-new balance: $ %,.2f\n", accounts[i].getBalance());
         }
+        return buffer;
     }
 
     /**
      * Print out all account in database in no specific order
      */
     public String printAccounts() {
-        String buffer = "\n";
+        String buffer = "";
         for (int i = 0; i < size; i += 1) {
             buffer  += accounts[i].toString() + "\n";
         }
-        return buffer+"\n";
+        return buffer;
     }
 
     /**
@@ -201,5 +208,4 @@ public class AccountDatabase {
     public int getSize() {
         return size;
     }
-
 }

@@ -3,11 +3,20 @@
  */
 package Controller;
 import Model.*;
+import com.sun.tools.javac.Main;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.stage.Window;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class Controller {
     /**
@@ -58,12 +67,14 @@ public class Controller {
     ToggleGroup tgAccount;
     ToggleGroup tgFunds;
     AccountDatabase database;
+    Stage currentStage;
 
     @FXML
     public void initialize() {
 
+//        System.out.println(Stage.getWindows().stream().filter(Window::isShowing));
+
         database = new AccountDatabase();
-        output.appendText("Test\n");
 
         tgAccount = new ToggleGroup();
         checkingAccount.setToggleGroup(tgAccount);
@@ -105,6 +116,11 @@ public class Controller {
         });
 
     }
+
+    public void start(Stage primaryStage) {
+        currentStage = primaryStage;
+    }
+
 
     //-------------------------------OPEN/CLOSE TAB------------------------------------------
 
@@ -160,7 +176,7 @@ public class Controller {
             default:
                 output.appendText("Please fill out all fields :)\n");
         }
-        output.appendText(database.printAccounts());
+
     }
 
     /**
@@ -215,10 +231,8 @@ public class Controller {
             default:
                 output.appendText("Please fill out all fields :)\n");
         }
-        output.appendText(database.printAccounts());
+
     }
-
-
 
 
 
@@ -265,7 +279,6 @@ public class Controller {
                 break;
         }
 
-        output.appendText(database.printAccounts());
 
     }
 
@@ -309,8 +322,114 @@ public class Controller {
                 break;
         }
 
-        output.appendText(database.printAccounts());
+    }
 
+    //-------------------------------IMPORT/EXPORT TAB ---------------------------------------
+
+    public void importFile(ActionEvent event) throws FileNotFoundException {
+
+        FileChooser fileChooser = new FileChooser();
+
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("TXT Files", "database.txt")
+        );
+        File selectedFile = fileChooser.showOpenDialog(currentStage);
+        if (selectedFile == null){
+            output.appendText("Please select a database.txt");
+            return;
+        }
+
+        Scanner reader = new Scanner(selectedFile);
+
+        while(reader.hasNextLine()) {
+            String line = reader.nextLine();
+            addAccount(line);
+        }
+
+    }
+
+    public void printAll() {
+        if (database.getSize() == 0) {
+            output.appendText("Database is empty\n");
+            return;
+        }
+        output.appendText("--Listing accounts in the database--\n");
+        output.appendText(database.printAccounts());
+        output.appendText("--end of listing--\n");
+    }
+
+    public void printLast() {
+        output.appendText("\n");
+        output.appendText("--Printing statements by date opened--\n");
+        output.appendText(database.printByLastName());
+        output.appendText("--end of listing--\n");
+    }
+
+    public void printDate() {
+        output.appendText("\n");
+        output.appendText("--Printing statements by last name--\n");
+        output.appendText(database.printByDateOpen());
+        output.appendText("--end of printing--\n");
+    }
+
+    public void exportAll() {
+        FileChooser fileChooser = new FileChooser();
+
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("TXT Files", "*.txt")
+        );
+    }
+
+    public void exportLast() {
+
+    }
+
+    public void exportDate() {
+
+    }
+
+    public void exportImportable() {}
+
+    private void addAccount(String account) {
+
+        String[] parts = account.split(",");
+        String[] dateParts = parts[4].split("/");
+        boolean special = false;
+
+        String type = parts[0];
+        Profile person = new Profile(parts[1], parts[2]);
+        Double initialBalance = Double.parseDouble(parts[3]);
+        Date dateOpen = new Date(Integer.parseInt(dateParts[0]),
+                Integer.parseInt(dateParts[1]), Integer.parseInt(dateParts[2]));
+        if (!type.equals("M")) special = Boolean.parseBoolean(parts[5]);
+
+
+        boolean check;
+        switch (type) {
+            case "C":
+                Checking checking = new Checking(person, dateOpen, initialBalance, special);
+                check = database.add(checking);
+                if (check) output.appendText("Account opened and added to the database.\n");
+                else output.appendText("Account is already in the database.\n");
+                break;
+
+            case "S":
+                Savings savings = new Savings(person, dateOpen, initialBalance, special);
+                check = database.add(savings);
+                if (check) output.appendText("Account opened and added to the database.\n");
+                else output.appendText("Account is already in the database.\n");
+                break;
+
+            case "M":
+                MoneyMarket market = new MoneyMarket(person, dateOpen, initialBalance);
+                check = database.add(market);
+                if (check) output.appendText("Account opened and added to the database.\n");
+                else output.appendText("Account is already in the database.\n");
+                break;
+
+            default:
+                output.appendText("Please fill out all fields :)\n");
+        }
     }
 
 
@@ -355,6 +474,8 @@ public class Controller {
         clearOutput();
         clearFields();
     }
+
+
 
     //---------------------------------HELPER FUNCTIONS---------------------------------------
 
