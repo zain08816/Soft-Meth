@@ -43,7 +43,7 @@ public abstract class Account {
      */
     @Override
     public String toString() {
-        return getName() + " " + balance + " " + dateOpen.toString();
+        return String.format("%s* $%,.2f*%s", getName(), getBalance(), dateOpen.toString());
     }
 
     /**
@@ -99,5 +99,14 @@ public abstract class Account {
      * @return returns Monthly Fee
      */
     public abstract double monthlyFee();
+
+    /**
+     * Gets the exportable string for an account
+     * @return String that contains readable data of account
+     */
+    public String exportString(){
+        return String.format("%s,%s,%.2f,%s", holder.getFname(), holder.getLname(), balance, dateOpen.toString());
+    }
+
 
 }

@@ -115,6 +115,18 @@ public class AccountDatabase {
     }
 
     /**
+     * Adds withdrawals to an account
+     * @param account Account to be added
+     * @param withdrawals number to be added
+     */
+    public void addWithdrawals(Account account, int withdrawals) {
+        int foundAccount = find(account);
+        for (int i = 0; i < withdrawals ; i += 1) {
+            accounts[foundAccount].debit(0);
+        }
+    }
+
+    /**
      * Sort accounts by date opened in ascending order
      */
     private void sortByDateOpen() {
@@ -199,6 +211,18 @@ public class AccountDatabase {
             buffer  += accounts[i].toString() + "\n";
         }
         return buffer;
+    }
+
+    /**
+     * Prints exportable string
+     * @return exportable
+     */
+    public String printExportable() {
+         String buffer = "";
+         for (int i = 0; i < size; i += 1) {
+             buffer += accounts[i].exportString();
+         }
+         return buffer;
     }
 
     /**

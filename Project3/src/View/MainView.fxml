@@ -236,10 +236,10 @@
                               <SplitMenuButton layoutX="8.0" layoutY="62.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Import/Export">
                                 <items>
                                   <MenuItem mnemonicParsing="false" onAction="#importFile" text="Import" />
-                                    <MenuItem mnemonicParsing="false" onAction="#importFile" text="Export Importable" />
-                                  <MenuItem mnemonicParsing="false" text="Export All" />
-                                    <MenuItem mnemonicParsing="false" text="Export By Last Name" />
-                                    <MenuItem mnemonicParsing="false" text="Export By Date Open" />
+                                    <MenuItem mnemonicParsing="false" onAction="#exportImportable" text="Export Importable" />
+                                  <MenuItem mnemonicParsing="false" onAction="#exportAll" text="Export All" />
+                                    <MenuItem mnemonicParsing="false" onAction="#exportLast" text="Export By Last Name" />
+                                    <MenuItem mnemonicParsing="false" onAction="#exportDate" text="Export By Date Open" />
                                 </items>
                               </SplitMenuButton>
                               <Button layoutX="8.0" layoutY="111.0" mnemonicParsing="false" onAction="#clearOutput" prefHeight="27.0" prefWidth="200.0" text="Clear" />

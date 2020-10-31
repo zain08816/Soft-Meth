@@ -49,10 +49,9 @@ public class MoneyMarket extends Account {
     @Override
     public String toString() {
         String special = withdrawals == 1
-                ? String.format("%d withdrawal", withdrawals)
-                : String.format("%d withdrawals", withdrawals) ;
-        return String.format("*Money Market*%s* $%,.2f*%s*%s*", this.getName(),
-                this.getBalance(), this.getDateOpen().toString(), special);
+                ? String.format("*%d withdrawal", withdrawals)
+                : String.format("*%d withdrawals", withdrawals) ;
+        return String.format("*Money Market*%s%s", super.toString(), special);
     }
 
     /**
@@ -87,5 +86,14 @@ public class MoneyMarket extends Account {
             if (withdrawals <= MAX_WITHDRAWAL_WITHOUT_FEE) return 0;
         }
         return MONTHLY_FEE;
+    }
+
+    /**
+     * Gets the exportable string for an account
+     * @return String that contains readable data of account
+     */
+    @Override
+    public String exportString() {
+        return String.format("M,%s,%d\n", super.exportString(), withdrawals);
     }
 }

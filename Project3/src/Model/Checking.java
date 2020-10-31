@@ -30,8 +30,7 @@ public class Checking extends Account {
     @Override
     public String toString() {
         String special = directDeposit ? "*direct deposit account*" : "";
-        return String.format("*Checking*%s* $%,.2f*%s%s", this.getName(),
-                this.getBalance(), this.getDateOpen().toString(), special);
+        return String.format("*Checking*%s%s", super.toString(), special);
     }
 
     /**
@@ -65,5 +64,14 @@ public class Checking extends Account {
         if (getBalance() >= MIN_BALANCE) return 0;
         else if (directDeposit) return 0;
         return MONTHLY_FEE;
+    }
+
+    /**
+     * Gets the exportable string for an account
+     * @return String that contains readable data of account
+     */
+    @Override
+    public String exportString() {
+        return String.format("C,%s,%b\n", super.exportString(), directDeposit);
     }
 }

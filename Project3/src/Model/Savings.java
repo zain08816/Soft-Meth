@@ -33,8 +33,7 @@ public class Savings extends Account {
     @Override
     public String toString() {
         String special = isLoyal ? "*special Savings account*" : "";
-        return String.format("*Savings*%s* $%,.2f*%s%s", this.getName(),
-                this.getBalance(), this.getDateOpen().toString(), special);
+        return String.format("*Savings*%s%s", super.toString(), special);
     }
 
     /**
@@ -68,6 +67,15 @@ public class Savings extends Account {
     public double monthlyFee() {
         if (getBalance() >= MIN_BALANCE) return 0;
         else return MONTHLY_FEE;
+    }
+
+    /**
+     * Gets the exportable string for an account
+     * @return String that contains readable data of account
+     */
+    @Override
+    public String exportString() {
+        return String.format("S,%s,%b\n", super.exportString(), isLoyal);
     }
 
 }
