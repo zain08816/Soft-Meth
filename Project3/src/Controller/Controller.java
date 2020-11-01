@@ -11,7 +11,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
@@ -303,24 +302,24 @@ public class Controller {
                 Checking checking = new Checking(person, new Date(0,0,0), 0.0, false);
                 check = database.withdrawal(checking, withdrawAmount);
                 if (check == 0) output.appendText( String.format("%.2f withdrawn from account.\n", withdrawAmount));
-                else if (check == 1) output.appendText("Insufficient funds.");
-                else if (check == -1) output.appendText("Account does not exist.");
+                else if (check == 1) output.appendText("Insufficient funds.\n");
+                else if (check == -1) output.appendText("Account does not exist.\n");
                 break;
 
             case "Savings":
                 Savings savings = new Savings(person, new Date(0,0,0), 0.0, false);
                 check = database.withdrawal(savings, withdrawAmount);
                 if (check == 0) output.appendText( String.format("%.2f withdrawn from account.\n", withdrawAmount));
-                else if (check == 1) output.appendText("Insufficient funds.");
-                else if (check == -1) output.appendText("Account does not exist.");
+                else if (check == 1) output.appendText("Insufficient funds.\n");
+                else if (check == -1) output.appendText("Account does not exist.\n");
                 break;
 
             case "Money Market":
                 MoneyMarket market = new MoneyMarket(person, new Date(0,0,0), 0.0);
                 check = database.withdrawal(market, withdrawAmount);
                 if (check == 0) output.appendText( String.format("%.2f withdrawn from account.\n", withdrawAmount));
-                else if (check == 1) output.appendText("Insufficient funds.");
-                else if (check == -1) output.appendText("Account does not exist.");
+                else if (check == 1) output.appendText("Insufficient funds.\n");
+                else if (check == -1) output.appendText("Account does not exist.\n");
                 break;
         }
 
@@ -353,9 +352,9 @@ public class Controller {
                 }
                 addAccount(line);
             }
-            output.appendText("Database imported successfully!\n");
-        } catch(FileNotFoundException exception) {
-            output.appendText("Please select a database.txt\n");
+            output.appendText("Database imported\n");
+        } catch(Exception exception) {
+            output.appendText("Please select a valid format database.txt\n");
         }
     }
 
@@ -402,6 +401,10 @@ public class Controller {
      * Exports database in no specific order
      */
     public void exportAll() {
+        if (database.getSize() == 0) {
+            output.appendText("Cannot export, Database is empty\n");
+            return;
+        }
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save");
         fileChooser.getExtensionFilters().addAll(
@@ -414,22 +417,22 @@ public class Controller {
         }
         try {
             PrintWriter writer = new PrintWriter(selectedFile);
-            if (database.getSize() == 0) {
-                writer.println("Database is empty");
-                writer.close();
-                return;
-            }
             writer.println(database.printAccounts());
             writer.close();
-        } catch(FileNotFoundException exception) {
+        } catch(Exception exception) {
             output.appendText("Please select a valid save location\n");
         }
+        output.appendText("File exported\n");
     }
 
     /**
      * Exports statement by last name
      */
     public void exportLast() {
+        if (database.getSize() == 0) {
+            output.appendText("Cannot export, Database is empty\n");
+            return;
+        }
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save");
         fileChooser.getExtensionFilters().addAll(
@@ -442,22 +445,22 @@ public class Controller {
         }
         try {
             PrintWriter writer = new PrintWriter(selectedFile);
-            if (database.getSize() == 0) {
-                writer.println("Database is empty");
-                writer.close();
-                return;
-            }
             writer.println(database.printByLastName());
             writer.close();
-        } catch(FileNotFoundException exception) {
+        } catch(Exception exception) {
             output.appendText("Please select a valid save location\n");
         }
+        output.appendText("File exported\n");
     }
 
     /**
      * Exports statement by date opened
      */
     public void exportDate() {
+        if (database.getSize() == 0) {
+            output.appendText("Cannot export, Database is empty\n");
+            return;
+        }
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save");
         fileChooser.getExtensionFilters().addAll(
@@ -470,22 +473,22 @@ public class Controller {
         }
         try {
             PrintWriter writer = new PrintWriter(selectedFile);
-            if (database.getSize() == 0) {
-                output.appendText("Cannot export, Database is empty\n");
-                writer.close();
-                return;
-            }
             writer.println(database.printByDateOpen());
             writer.close();
-        } catch(FileNotFoundException exception) {
+        } catch(Exception exception) {
             output.appendText("Please select a valid save location");
         }
+        output.appendText("File exported\n");
     }
 
     /**
      * Exports importable file
      */
     public void exportImportable() {
+        if (database.getSize() == 0) {
+            output.appendText("Cannot export, Database is empty\n");
+            return;
+        }
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save");
         fileChooser.getExtensionFilters().addAll(
@@ -498,16 +501,13 @@ public class Controller {
         }
         try {
             PrintWriter writer = new PrintWriter(selectedFile);
-            if (database.getSize() == 0) {
-                output.appendText("Cannot export, Database is empty\n");
-                writer.close();
-                return;
-            }
             writer.println(database.printExportable());
             writer.close();
-        } catch(FileNotFoundException exception) {
+        } catch(Exception exception) {
             output.appendText("Please select a valid save location\n");
         }
+
+        output.appendText("File exported\n");
     }
 
     //-------------------------------CLEARING LOGIC-------------------------------------------
@@ -624,14 +624,14 @@ public class Controller {
         String fundAmount = amount.getText();
 
         if (firstName.length() == 0 || lastName.length() == 0 || fundAmount.length() == 0){
-            output.appendText("Please provide a first name, last name, and deposit amount.\n");
+            output.appendText("Please provide a first name, last name, and amount.\n");
             return false;
         }
 
         try {
             double check = Double.parseDouble(fundAmount);
         }catch(Exception exception) {
-            output.appendText("Please enter a valid dollar amount.\n");
+            output.appendText("Please enter a valid amount.\n");
             return false;
         }
 
@@ -649,49 +649,49 @@ public class Controller {
      * @param account importable String
      */
     private void addAccount(String account) {
+            String[] parts = account.split(",");
+            String[] dateParts = parts[4].split("/");
+            boolean special = false;
+            int withdrawals = 0;
 
-        String[] parts = account.split(",");
-        String[] dateParts = parts[4].split("/");
-        boolean special = false;
-        int withdrawals = 0;
+            String type = parts[0];
+            Profile person = new Profile(parts[1], parts[2]);
+            double initialBalance = Double.parseDouble(parts[3]);
+            Date dateOpen = new Date(Integer.parseInt(dateParts[0]),
+                    Integer.parseInt(dateParts[1]), Integer.parseInt(dateParts[2]));
+            if (!type.equals("M")) special = Boolean.parseBoolean(parts[5]);
+            else withdrawals = Integer.parseInt(parts[5]);
 
-        String type = parts[0];
-        Profile person = new Profile(parts[1], parts[2]);
-        double initialBalance = Double.parseDouble(parts[3]);
-        Date dateOpen = new Date(Integer.parseInt(dateParts[0]),
-                Integer.parseInt(dateParts[1]), Integer.parseInt(dateParts[2]));
-        if (!type.equals("M")) special = Boolean.parseBoolean(parts[5]);
-        else withdrawals = Integer.parseInt(parts[5]);
+            boolean check;
+            switch (type) {
+                case "C":
+                    Checking checking = new Checking(person, dateOpen, initialBalance, special);
+                    check = database.add(checking);
+                    if (check) output.appendText("Account opened and added to the database.\n");
+                    else output.appendText("Account is already in the database.\n");
+                    break;
 
-        boolean check;
-        switch (type) {
-            case "C":
-                Checking checking = new Checking(person, dateOpen, initialBalance, special);
-                check = database.add(checking);
-                if (check) output.appendText("Account opened and added to the database.\n");
-                else output.appendText("Account is already in the database.\n");
-                break;
+                case "S":
+                    Savings savings = new Savings(person, dateOpen, initialBalance, special);
+                    check = database.add(savings);
+                    if (check) output.appendText("Account opened and added to the database.\n");
+                    else output.appendText("Account is already in the database.\n");
+                    break;
 
-            case "S":
-                Savings savings = new Savings(person, dateOpen, initialBalance, special);
-                check = database.add(savings);
-                if (check) output.appendText("Account opened and added to the database.\n");
-                else output.appendText("Account is already in the database.\n");
-                break;
+                case "M":
+                    MoneyMarket market = new MoneyMarket(person, dateOpen, initialBalance);
+                    check = database.add(market);
+                    if (check) {
+                        database.addWithdrawals(market, withdrawals);
+                        output.appendText("Account opened and added to the database.\n");
+                    }
+                    else output.appendText("Account is already in the database.\n");
+                    break;
 
-            case "M":
-                MoneyMarket market = new MoneyMarket(person, dateOpen, initialBalance);
-                check = database.add(market);
-                if (check) {
-                    database.addWithdrawals(market, withdrawals);
-                    output.appendText("Account opened and added to the database.\n");
-                }
-                else output.appendText("Account is already in the database.\n");
-                break;
+                default:
+                    output.appendText("Please fill out all fields :)\n");
+            }
 
-            default:
-                output.appendText("Please fill out all fields :)\n");
-        }
     }
 
 
