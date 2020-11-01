@@ -1,8 +1,8 @@
+package Model;
 /**
  * Holds constants for Date validation
  * @author Clarissa Hwang, Zain Ali
  */
-package Model;
 public class DateConsts {
     public static int FOURTH_YEAR = 4;
     public static int CENTENNIAL = 100;

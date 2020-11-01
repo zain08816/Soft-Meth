@@ -3,22 +3,22 @@
  */
 package Controller;
 import Model.*;
-import com.sun.tools.javac.Main;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
+/**
+ * Class for controlling MainView.fxml
+ * @author Clarissa Hwang, Zain Ali
+ */
 public class Controller {
     /**
      * FXML Declarations
@@ -70,10 +70,11 @@ public class Controller {
     AccountDatabase database;
     Stage currentStage;
 
+    /**
+     * Function run at the start of loading the controller
+     */
     @FXML
     public void initialize() {
-
-//        System.out.println(Stage.getWindows().stream().filter(Window::isShowing));
 
         database = new AccountDatabase();
 
@@ -128,7 +129,7 @@ public class Controller {
     /**
      * Open an account
      */
-    public void open(ActionEvent e) {
+    public void open() {
 
         //Check if inputs are all fill out
         if (!validateAccountInput()) return;
@@ -183,7 +184,7 @@ public class Controller {
     /**
      * Close an account
      */
-    public void close(ActionEvent e) {
+    public void close() {
         //Get inputs
         String firstName = firstAccount.getText();
         String lastName = lastAccount.getText();
@@ -242,7 +243,7 @@ public class Controller {
     /**
      * Deposit amount into account
      */
-    public void deposit(ActionEvent e) {
+    public void deposit() {
         //Validate inputs
         if (!validateFundsInput()) return;
 
@@ -283,7 +284,7 @@ public class Controller {
 
     }
 
-    public void withdraw(ActionEvent e) {
+    public void withdraw() {
         if (!validateFundsInput()) return;
 
         //Get inputs
@@ -327,7 +328,10 @@ public class Controller {
 
     //-------------------------------IMPORT/EXPORT TAB ---------------------------------------
 
-    public void importFile(ActionEvent event) {
+    /**
+     * Import database.txt file into the database
+     */
+    public void importFile() {
 
         FileChooser fileChooser = new FileChooser();
 
@@ -355,6 +359,9 @@ public class Controller {
         }
     }
 
+    /**
+     * Prints database in no specific order
+     */
     public void printAll() {
         if (database.getSize() == 0) {
             output.appendText("Database is empty\n");
@@ -365,6 +372,9 @@ public class Controller {
         output.appendText("--end of listing--\n");
     }
 
+    /**
+     * Prints statements by last name
+     */
     public void printLast() {
         if (database.getSize() == 0) {
             output.appendText("Database is empty\n");
@@ -375,6 +385,9 @@ public class Controller {
         output.appendText("--end of listing--\n");
     }
 
+    /**
+     * Prints statements by Date
+     */
     public void printDate() {
         if (database.getSize() == 0) {
             output.appendText("Database is empty\n");
@@ -385,6 +398,9 @@ public class Controller {
         output.appendText("--end of printing--\n");
     }
 
+    /**
+     * Exports database in no specific order
+     */
     public void exportAll() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save");
@@ -410,6 +426,9 @@ public class Controller {
         }
     }
 
+    /**
+     * Exports statement by last name
+     */
     public void exportLast() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save");
@@ -435,6 +454,9 @@ public class Controller {
         }
     }
 
+    /**
+     * Exports statement by date opened
+     */
     public void exportDate() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save");
@@ -460,6 +482,9 @@ public class Controller {
         }
     }
 
+    /**
+     * Exports importable file
+     */
     public void exportImportable() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save");
@@ -485,6 +510,144 @@ public class Controller {
         }
     }
 
+    //-------------------------------CLEARING LOGIC-------------------------------------------
+
+    /**
+     * Clear input fields
+     */
+    public void clearFields() {
+        firstAccount.setText("");
+        lastAccount.setText("");
+        firstFunds.setText("");
+        lastFunds.setText("");
+        month.setText("");
+        day.setText("");
+        year.setText("");
+        balance.setText("");
+        amount.setText("");
+        checkingAccount.setSelected(false);
+        savingsAccount.setSelected(false);
+        moneyMarketAccount.setSelected(false);
+        checkingFunds.setSelected(false);
+        savingsFunds.setSelected(false);
+        moneyMarketFunds.setSelected(false);
+        loyal.setSelected(false);
+        direct.setSelected(false);
+    }
+
+    /**
+     * Clear Output
+     */
+    public void clearOutput() {
+        output.setText("");
+    }
+
+    /**
+     * Clear both fields and output
+     */
+    public void clearAll() {
+        clearOutput();
+        clearFields();
+    }
+
+
+
+    //---------------------------------HELPER FUNCTIONS---------------------------------------
+
+    /**
+     * check to see if a given date is valid
+     * @return true if valid date, false if not
+     */
+    private boolean validateDate(String monthString, String dayString, String yearString){
+        try {
+            int mm = Integer.parseInt(monthString);
+            int dd = Integer.parseInt(dayString);
+            int yyyy = Integer.parseInt(yearString);
+            if (new Date(mm, dd, yyyy).isValid()) {
+                return true;
+            } else {
+                output.appendText("Please enter a valid date.\n");
+                return false;
+            }
+
+        } catch(Exception exception) {
+            output.appendText("Please enter a valid date.\n");
+            return false;
+        }
+    }
+
+    /**
+     * Validate to see if inputs are filled out and correctly
+     * @return true if valid inputs, false if not
+     */
+    private boolean validateAccountInput() {
+        String firstName = firstAccount.getText();
+        String lastName = lastAccount.getText();
+        String monthString = month.getText();
+        String dayString = day.getText();
+        String yearString = year.getText();
+        String amount = balance.getText();
+        RadioButton rb = (RadioButton)tgAccount.getSelectedToggle();
+        String type;
+        if (rb != null) {
+            type = rb.getText();
+        } else {
+            output.appendText("Please select an account type\n");
+            return false;
+        }
+
+        try {
+            Double check = Double.parseDouble(amount);
+        } catch (Exception e) {
+            output.appendText("Please enter a valid amount\n");
+            return false;
+        }
+
+        if (firstName.length() == 0 ||
+                lastName.length() == 0 ||
+                monthString.length() == 0 ||
+                dayString.length() == 0 ||
+                yearString.length() == 0 ||
+                type.length() == 0) {
+            output.appendText("Please fill out all fields :)\n");
+            return false;
+        } else return true;
+    }
+
+    /**
+     * Validate inputs on withdraw/deposit tab
+     * @return true if valid inputs, false if not
+     */
+    private boolean validateFundsInput() {
+        String firstName = firstFunds.getText();
+        String lastName = lastFunds.getText();
+        String fundAmount = amount.getText();
+
+        if (firstName.length() == 0 || lastName.length() == 0 || fundAmount.length() == 0){
+            output.appendText("Please provide a first name, last name, and deposit amount.\n");
+            return false;
+        }
+
+        try {
+            double check = Double.parseDouble(fundAmount);
+        }catch(Exception exception) {
+            output.appendText("Please enter a valid dollar amount.\n");
+            return false;
+        }
+
+        RadioButton rb = (RadioButton)tgFunds.getSelectedToggle();
+        if (rb == null) {
+            output.appendText("Please select an account type\n");
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Add account function for importable Strings
+     * @param account importable String
+     */
     private void addAccount(String account) {
 
         String[] parts = account.split(",");
@@ -529,137 +692,6 @@ public class Controller {
             default:
                 output.appendText("Please fill out all fields :)\n");
         }
-    }
-
-
-
-
-    //-------------------------------CLEARING LOGIC-------------------------------------------
-
-    /**
-     * Clear input fields
-     */
-    public void clearFields() {
-        firstAccount.setText("");
-        lastAccount.setText("");
-        firstFunds.setText("");
-        lastFunds.setText("");
-        month.setText("");
-        day.setText("");
-        year.setText("");
-        balance.setText("");
-        amount.setText("");
-        checkingAccount.setSelected(false);
-        savingsAccount.setSelected(false);
-        moneyMarketAccount.setSelected(false);
-        checkingFunds.setSelected(false);
-        savingsFunds.setSelected(false);
-        moneyMarketFunds.setSelected(false);
-        loyal.setSelected(false);
-        direct.setSelected(false);
-    }
-
-    /**
-     * Clear Output
-     */
-    public void clearOutput() {
-        output.setText("");
-    }
-
-    /**
-     * clear both fields and output
-     */
-    public void clearAll() {
-        clearOutput();
-        clearFields();
-    }
-
-
-
-    //---------------------------------HELPER FUNCTIONS---------------------------------------
-
-    /**
-     * check to see if a given date is valid
-     */
-    private boolean validateDate(String monthString, String dayString, String yearString){
-        try {
-            int mm = Integer.parseInt(monthString);
-            int dd = Integer.parseInt(dayString);
-            int yyyy = Integer.parseInt(yearString);
-            if (new Date(mm, dd, yyyy).isValid()) {
-                return true;
-            } else {
-                output.appendText("Please enter a valid date.\n");
-                return false;
-            }
-
-        } catch(Exception exception) {
-            output.appendText("Please enter a valid date.\n");
-            return false;
-        }
-    }
-
-    /**
-     * Validate to see if inputs are filled out and correctly
-     */
-    private boolean validateAccountInput() {
-        String firstName = firstAccount.getText();
-        String lastName = lastAccount.getText();
-        String monthString = month.getText();
-        String dayString = day.getText();
-        String yearString = year.getText();
-        String amount = balance.getText();
-        RadioButton rb = (RadioButton)tgAccount.getSelectedToggle();
-        String type;
-        if (rb != null) {
-            type = rb.getText();
-        } else {
-            output.appendText("Please select an account type\n");
-            return false;
-        }
-
-        try {
-            Double check = Double.parseDouble(amount);
-        } catch (Exception e) {
-            output.appendText("Please enter a valid amount\n");
-            return false;
-        }
-
-        if (firstName.length() == 0 ||
-                lastName.length() == 0 ||
-                monthString.length() == 0 ||
-                dayString.length() == 0 ||
-                yearString.length() == 0 ||
-                type.length() == 0) {
-            output.appendText("Please fill out all fields :)\n");
-            return false;
-        } else return true;
-    }
-
-    private boolean validateFundsInput() {
-        String firstName = firstFunds.getText();
-        String lastName = lastFunds.getText();
-        String fundAmount = amount.getText();
-
-        if (firstName.length() == 0 || lastName.length() == 0 || fundAmount.length() == 0){
-            output.appendText("Please provide a first name, last name, and deposit amount.\n");
-            return false;
-        }
-
-        try {
-            double check = Double.parseDouble(fundAmount);
-        }catch(Exception exception) {
-            output.appendText("Please enter a valid dollar amount.\n");
-            return false;
-        }
-
-        RadioButton rb = (RadioButton)tgFunds.getSelectedToggle();
-        if (rb == null) {
-            output.appendText("Please select an account type\n");
-            return false;
-        }
-
-        return true;
     }
 
 

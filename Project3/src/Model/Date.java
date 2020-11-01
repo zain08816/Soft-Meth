@@ -1,9 +1,8 @@
-
+package Model;
 /**
  * Class for holding and validating Dates
  * @author Clarissa Hwang, Zain Ali
  */
-package Model;
 public class Date implements Comparable<Date> {
     private int year;
     private int month;
@@ -11,7 +10,9 @@ public class Date implements Comparable<Date> {
 
     /**
      * Constructor for Date
-     * @param date String in the format of mm/dd/yyyy
+     * @param month int month of open
+     * @param day int day of open
+     * @param year int year of open
      */
     public Date(int month, int day, int year) {
         this.month = month;

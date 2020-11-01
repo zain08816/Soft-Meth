@@ -1,10 +1,8 @@
-
+package Model;
 /**
  * Class to hold account holder name
  * @author Clarissa Hwang, Zain Ali
  */
-package Model;
-
 public class Profile {
     private String fname;
     private String lname;

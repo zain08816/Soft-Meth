@@ -1,13 +1,8 @@
+package Model;
 /**
  * Holds all accounts and handles account functions
  * @author Clarissa Hwang, Zain Ali
  */
-package Model;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 public class AccountDatabase {
     private final int INITIAL_SIZE = 5;
     private Account[] accounts;
@@ -214,8 +209,8 @@ public class AccountDatabase {
     }
 
     /**
-     * Prints exportable string
-     * @return exportable
+     * Gives importable string
+     * @return importable string
      */
     public String printExportable() {
          String buffer = "";
