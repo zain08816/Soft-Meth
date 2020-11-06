@@ -598,6 +598,10 @@ public class Controller {
 
         try {
             Double check = Double.parseDouble(amount);
+            if (check < 0 ) {
+                output.appendText("Please enter a non negative amount.\n");
+                return false;
+            }
         } catch (Exception e) {
             output.appendText("Please enter a valid amount\n");
             return false;
@@ -630,6 +634,10 @@ public class Controller {
 
         try {
             double check = Double.parseDouble(fundAmount);
+            if (check < 0 ) {
+                output.appendText("Please enter a non negative amount.\n");
+                return false;
+            }
         }catch(Exception exception) {
             output.appendText("Please enter a valid amount.\n");
             return false;
