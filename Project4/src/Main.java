@@ -24,7 +24,7 @@ public class Main extends Application {
         mainController.start(primaryStage);
 
         primaryStage.setTitle("Project 4");
-        primaryStage.setScene(new Scene(root, 800, 600));
+        primaryStage.setScene(new Scene(root, 800, 900));
         primaryStage.setResizable(false);
         primaryStage.show();
     }
