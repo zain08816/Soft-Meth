@@ -10,4 +10,15 @@ public abstract class Sandwich implements Customizable {
     public String toString() {
         return null;
     }
+
+
+    @Override
+    public boolean add(Object obj) {
+        return false;
+    }
+
+    @Override
+    public boolean remove(Object obj) {
+        return false;
+    }
 }

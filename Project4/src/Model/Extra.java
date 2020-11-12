@@ -7,7 +7,7 @@ public class Extra {
     Extra honeyMustard;
     Extra freshSalsa;
     Extra hotSauce;
-    Extra ranch;
+    Extra dillPickles;
     Extra cheeseSauce;
     Extra grilledOnions;
     Extra grilledMushrooms;
