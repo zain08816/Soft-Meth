@@ -1,22 +1,30 @@
 package Model;
 
 public class Beef extends Sandwich {
-    Ingredient roastBeef;
-    Ingredient provoloneCheese;
-    Ingredient mustard;
+    private final double BEEF_PRICE = 10.99;
 
+    /**
+     * Constructor for a Beef sandwich
+     */
+    public Beef() {
+        super();
+    }
+
+    /**
+     * Calculates the price of the sandwich
+     * @return the price of the sandwich
+     */
     @Override
     public double price() {
-        return 0;
+        return BEEF_PRICE+(super.numExtras() * PER_EXTRA);
     }
 
+    /**
+     * Makes the sandwich into a string
+     * @return the sandwich as a string
+     */
     @Override
-    public boolean add(Object obj) {
-        return false;
-    }
-
-    @Override
-    public boolean remove(Object obj) {
-        return false;
+    public String toString() {
+        return String.format("Beef Sandwich: Roast Beef, Provolone Cheese, Mustard, %sPrice: $%.2f", super.toString(), price());
     }
 }

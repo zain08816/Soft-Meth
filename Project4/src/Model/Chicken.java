@@ -1,22 +1,30 @@
 package Model;
 
 public class Chicken extends Sandwich {
-    Ingredient friedChicken;
-    Ingredient spicySauce;
-    Ingredient pickles;
+    private final double CHICKEN_PRICE = 8.99;
 
+    /**
+     * Constructor for a Chicken Sandwich
+     */
+    public Chicken() {
+        super();
+    }
+
+    /**
+     * Calculates the price of the sandwich
+     * @return the price of the sandwich
+     */
     @Override
     public double price() {
-        return 0;
+        return CHICKEN_PRICE+(super.numExtras() * PER_EXTRA);
     }
 
+    /**
+     * Makes the Sandwich into a string
+     * @return the Sandwich as a string
+     */
     @Override
-    public boolean add(Object obj) {
-        return false;
-    }
-
-    @Override
-    public boolean remove(Object obj) {
-        return false;
+    public String toString() {
+        return String.format("Chicken Sandwich: Fried Chicken, Spicy Sauce, Pickles, %sPrice: $%.2f", super.toString(), price());
     }
 }
