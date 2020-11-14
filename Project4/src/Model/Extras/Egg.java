@@ -3,8 +3,8 @@ package Model.Extras;
 import javafx.scene.image.Image;
 
 public class Egg extends Extra {
-    private final Image EXTRA_IMAGE = new Image("Images/smonk.png");
-    private final String EXTRA_NAME = "Hardboiled Egg";
+    private final Image EXTRA_IMAGE = new Image("Images/egg.png", 150, 50, false, false);
+    private final String EXTRA_NAME = "Fried Egg";
 
     /**
      * Constructor for Egg
@@ -40,5 +40,14 @@ public class Egg extends Extra {
     public boolean equals(Object obj) {
         if (this == obj) return true;
         return obj != null && getClass() == obj.getClass();
+    }
+
+    /**
+     * Get the string of the extra
+     * @return string of extra
+     */
+    @Override
+    public String toString() {
+        return EXTRA_NAME;
     }
 }
