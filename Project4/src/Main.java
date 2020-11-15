@@ -23,8 +23,8 @@ public class Main extends Application {
         BuildController mainController = loader.getController();
         mainController.start(primaryStage);
 
-        primaryStage.setTitle("Project 4");
-        primaryStage.setScene(new Scene(root, 800, 900));
+        primaryStage.setTitle("Sandwich Builder");
+        primaryStage.setScene(new Scene(root, 800, 700));
         primaryStage.setResizable(false);
         primaryStage.show();
     }

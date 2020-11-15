@@ -3,6 +3,9 @@ package Controller;
 import Model.*;
 import Model.Extras.*;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
@@ -12,7 +15,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 
+/**
+ * Controller for building a sandwich and adding it to an order
+ * @author Clarissa Hwang, Zain Ali
+ */
 public class BuildController {
     private final String[] BASIC_CHICKEN = {"Fried Chicken", "Spicy Sauce", "Pickles"};
     private final String[] BASIC_BEEF = {"Roast Beef", "Provolone Cheese", "Mustard"};
@@ -20,7 +28,6 @@ public class BuildController {
     private final Image TOP_BUN = new Image("Images/topBun.png", 150, 50, false, false);
     private final Image BOTTOM_BUN = new Image("Images/bottomBun.png", 150, 50, false, false);
     static final int MAX_EXTRAS = 6;
-    static final double PER_EXTRA = 1.99;
     private double price;
 
 
@@ -43,6 +50,10 @@ public class BuildController {
     public Order order = new Order();
 
 
+    /**
+     * Function to pass the current stage around
+     * @param primaryStage stage that created for this view
+     */
     public void start(Stage primaryStage) {
         currentStage = primaryStage;
     }
@@ -64,7 +75,6 @@ public class BuildController {
      * Set Extras back to original state
      */
     public void setExtras() {
-        price -= addedExtras.getItems().size()*PER_EXTRA;
         addedExtras.getItems().clear();
         unaddedExtras.getItems().clear();
         Extra[] extras = {
@@ -107,40 +117,45 @@ public class BuildController {
      * Change type to sandwich type to Chicken
      */
     private void setChicken(){
-        price = new Chicken().price();
+        Chicken data = new Chicken();
+        price = data.price();
         sandwichPrice.setText(String.format("$%.2f", price));
         basicIngredients.getItems().clear();
         for (String s : BASIC_CHICKEN) {
             basicIngredients.getItems().add(s);
         }
         setExtras();
+        builtSandwich.getChildren().add(1, new ImageView(data.getImage()));
     }
 
     /**
      * Change type to sandwich type to Beef
      */
     private void setBeef(){
-        price = new Beef().price();
+        Beef data = new Beef();
+        price = data.price();
         sandwichPrice.setText(String.format("$%.2f", price));
         basicIngredients.getItems().clear();
         for (String s : BASIC_BEEF) {
             basicIngredients.getItems().add(s);
         }
         setExtras();
+        builtSandwich.getChildren().add(1, new ImageView(data.getImage()));
     }
 
     /**
      * Change type to sandwich type to Fish
      */
     private void setFish(){
-        price = new Fish().price();
+        Fish data = new Fish();
+        price = data.price();
         sandwichPrice.setText(String.format("$%.2f", price));
         basicIngredients.getItems().clear();
         for (String s : BASIC_FISH) {
             basicIngredients.getItems().add(s);
         }
         setExtras();
-
+        builtSandwich.getChildren().add(1, new ImageView(data.getImage()));
     }
 
     /**
@@ -156,7 +171,7 @@ public class BuildController {
              output.appendText("Please select an extra to add.\n");
              return;
          }
-         price += PER_EXTRA;
+         price += toAdd.getPrice();
          sandwichPrice.setText(String.format("$%.2f", price));
          addedExtras.getItems().add(toAdd);
          unaddedExtras.getItems().remove(toAdd);
@@ -178,14 +193,17 @@ public class BuildController {
             output.appendText("Please select an extra to remove.\n");
             return;
         }
-        price -= PER_EXTRA;
+        price -= toRemove.getPrice();
         sandwichPrice.setText(String.format("$%.2f", price));
         unaddedExtras.getItems().add(toRemove);
         addedExtras.getItems().remove(toRemove);
 
-        builtSandwich.getChildren().remove(builtSandwich.getChildren().size() - removeIndex - 2);
+        builtSandwich.getChildren().remove(builtSandwich.getChildren().size() - removeIndex - 3);
     }
 
+    /**
+     * Creates sandwich given order specifications
+     */
     public void createSandwich(){
         String type = sandwichTypes.getValue();
         switch (type) {
@@ -193,6 +211,9 @@ public class BuildController {
                 Chicken addChicken = new Chicken();
                 for (Extra extra : addedExtras.getItems()) {
                     addChicken.add(extra);
+                }
+                for (Extra extra : unaddedExtras.getItems()) {
+                    addChicken.remove(extra);
                 }
                 order.add(new OrderLine(addChicken));
                 setChicken();
@@ -202,6 +223,9 @@ public class BuildController {
                 for (Extra extra : addedExtras.getItems()) {
                     addBeef.add(extra);
                 }
+                for (Extra extra : unaddedExtras.getItems()) {
+                    addBeef.remove(extra);
+                }
                 order.add(new OrderLine(addBeef));
                 setBeef();
                 break;
@@ -210,13 +234,40 @@ public class BuildController {
                 for (Extra extra : addedExtras.getItems()) {
                     addFish.add(extra);
                 }
+                for (Extra extra : unaddedExtras.getItems()) {
+                    addFish.remove(extra);
+                }
                 order.add(new OrderLine(addFish));
                 setFish();
                 break;
         }
-        output.appendText("Sandwich added to order!");
-        for(OrderLine line : order.getOrders()) {
-            System.out.println(line);
+        output.appendText("Sandwich added to order!\n");
+    }
+
+    /**
+     * Open Order window
+     */
+    public void openOrder() {
+
+        Parent root;
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getClassLoader().getResource("View/OrderView.fxml"));
+            root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Order Details");
+            stage.setScene(new Scene(root, 820, 500));
+            stage.setResizable(false);
+
+            OrderController secondaryController = loader.getController();
+            secondaryController.start(stage);
+            secondaryController.setOrder(order);
+
+            stage.show();
+        }
+        catch (IOException exception) {
+            output.appendText("An error occurred when showing order details\n");
         }
     }
 }
