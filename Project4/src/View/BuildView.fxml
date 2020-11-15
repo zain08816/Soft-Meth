@@ -21,7 +21,7 @@
                 <ListView fx:id="addedExtras" layoutX="287.0" layoutY="155.0" prefHeight="300.0" prefWidth="150.0" />
                 <Button layoutX="179.0" layoutY="292.0" mnemonicParsing="false" onAction="#remove" prefHeight="20.0" prefWidth="100.0" text="&lt;&lt; Remove" />
                 <Button layoutX="179.0" layoutY="236.0" mnemonicParsing="false" onAction="#add" prefHeight="20.0" prefWidth="100.0" text="Add &gt;&gt;" />
-                <Button layoutX="179.0" layoutY="347.0" mnemonicParsing="false" onAction="#setExtras" prefHeight="20.0" prefWidth="100.0" text="Clear Selected" />
+                <Button layoutX="179.0" layoutY="347.0" mnemonicParsing="false" onAction="#newType" prefHeight="20.0" prefWidth="100.0" text="Clear Selected" />
                 <Text layoutX="25.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingredient Options" textAlignment="CENTER" wrappingWidth="128.22900390625" />
                 <Text layoutX="305.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Extra Ingredients" textAlignment="CENTER" wrappingWidth="113.22900390625" />
                 <ComboBox onAction="#newType" fx:id="sandwichTypes" layoutX="14.0" layoutY="29.0" prefWidth="150.0" />
@@ -32,7 +32,7 @@
             <TextField fx:id="sandwichPrice" layoutX="678.0" layoutY="361.0" prefHeight="27.0" prefWidth="90.0" />
             <Text layoutX="697.0" layoutY="352.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price $" textAlignment="CENTER" wrappingWidth="51.36474609375" />
             <Button onAction="#createSandwich" layoutX="679.0" layoutY="394.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="90.0" text="Add to Order" />
-            <Button layoutX="679.0" layoutY="428.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="90.0" text="Show Order" />
+            <Button onAction="#openOrder" layoutX="679.0" layoutY="428.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="90.0" text="Show Order" />
             </children>
         </AnchorPane>
     </top>

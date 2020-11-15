@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="416.0" prefWidth="820.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.OrderController">
+   <children>
+      <ListView fx:id="orderlines" layoutX="18.0" layoutY="14.0" prefHeight="297.0" prefWidth="785.0" />
+      <TextField fx:id="orderPrice" layoutX="653.0" layoutY="335.0" prefWidth="150.0" />
+      <Text layoutX="697.0" layoutY="331.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order Total" textAlignment="CENTER" />
+      <Button onAction="#exportOrder" layoutX="653.0" layoutY="371.0" mnemonicParsing="false" prefWidth="150.0" text="Save Order to File" />
+      <Button onAction="#duplicate" layoutX="18.0" layoutY="335.0" mnemonicParsing="false" prefWidth="120.0" text="+ Same Order" />
+      <Button onAction="#delete" layoutX="148.0" layoutY="335.0" mnemonicParsing="false" prefWidth="120.0" text="- Remove Order" />
+      <Button onAction="#clearOrder" layoutX="18.0" layoutY="371.0" mnemonicParsing="false" prefWidth="120.0" text="Clear Order" />
+      <Button onAction="#closeWindow" layoutX="148.0" layoutY="371.0" mnemonicParsing="false" prefWidth="120.0" text="Back" />
+   </children>
+</AnchorPane>
