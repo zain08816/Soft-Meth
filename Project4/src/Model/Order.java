@@ -2,6 +2,10 @@ package Model;
 
 import java.util.ArrayList;
 
+/**
+ * Order Class
+ * @author Clarissa Hwang, Zain Ali
+ */
 public class Order implements Customizable {
     public static int lineNumber;
     private ArrayList<OrderLine> orderlines;
@@ -21,9 +25,10 @@ public class Order implements Customizable {
      */
     @Override
     public boolean add(Object obj) {
-        OrderLine line = (OrderLine) obj;
-        line.setLineNumber(orderlines.size()+1);
+        OrderLine line = new OrderLine((OrderLine) obj);
+        line.setLineNumber(lineNumber+1);
         orderlines.add(line);
+        lineNumber += 1;
         return true;
     }
 
@@ -45,7 +50,8 @@ public class Order implements Customizable {
         for (int i = toRemove; i < orderlines.size(); i += 1) {
             orderlines.get(i).setLineNumber(i);
         }
-        orderlines.remove(toRemove - 1);
+        orderlines.remove(lineNumber - 1);
+        lineNumber -= 1;
         return true;
     }
 
@@ -55,5 +61,46 @@ public class Order implements Customizable {
      */
     public ArrayList<OrderLine> getOrders() {
         return orderlines;
+    }
+
+    public String exportString() {
+        String buffer = "~~~~~~~~~~========== ORDER DETAILS ==========~~~~~~~~~~\n";
+        if (orderlines.isEmpty()) {
+            buffer += "Please order something... :)\n";
+            buffer += "~~~~~~~~~~===================================~~~~~~~~~~\n";
+            buffer += String.format("PRICE: $%.2f\n", orderTotal());
+            buffer += "TAX: WAIVED\n";
+            buffer += "TIP: $0.00\n";
+            return buffer;
+        } else {
+            for (OrderLine order: orderlines) {
+                buffer += order.toString() + "\n";
+            }
+        }
+        buffer += "~~~~~~~~~~===================================~~~~~~~~~~\n";
+        buffer += String.format("PRICE: $%.2f\n", orderTotal());
+        buffer += "TAX: WAIVED\n";
+        buffer += "TIP: $0.00\n";
+        return buffer;
+    }
+
+    /**
+     * Get total price
+     * @return total order price
+     */
+    public double orderTotal() {
+        double total = 0;
+        for (OrderLine order: orderlines) {
+            total += order.getPrice();
+        }
+        return total;
+    }
+
+    /**
+     * Deletes everything in the order
+     */
+    public void clear() {
+        orderlines.clear();
+        lineNumber = 0;
     }
 }

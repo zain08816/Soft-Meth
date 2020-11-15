@@ -1,7 +1,22 @@
 package Model;
 
+import javafx.scene.image.Image;
+
+/**
+ * Chicken Sandwich
+ * @author Clarissa Hwang, Zain Ali
+ */
 public class Chicken extends Sandwich {
     private final double CHICKEN_PRICE = 8.99;
+    private final Image CHICKEN_IMAGE = new Image("Images/chicken.png", 150, 50, false, false);
+
+    /**
+     * Gets the image of chicken
+     * @return chicken image
+     */
+    public Image getImage() {
+        return CHICKEN_IMAGE;
+    }
 
     /**
      * Constructor for a Chicken Sandwich

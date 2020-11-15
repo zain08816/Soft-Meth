@@ -2,6 +2,10 @@ package Model.Extras;
 
 import javafx.scene.image.Image;
 
+/**
+ * Lettuce Extra
+ * @author Clarissa Hwang, Zain Ali
+ */
 public class Lettuce extends Extra {
     private final Image EXTRA_IMAGE = new Image("Images/lettuce.png", 150, 50, false, false);
     private final String EXTRA_NAME = "Lettuce";

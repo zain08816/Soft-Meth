@@ -4,6 +4,10 @@ import Model.Extras.Extra;
 
 import java.util.ArrayList;
 
+/**
+ * Sandwich class for storing a specific sandwich order
+ * @author Clarissa Hwang, Zain Ali
+ */
 public abstract class Sandwich implements Customizable {
     static final int MAX_EXTRAS = 6;
     static final double PER_EXTRA = 1.99;

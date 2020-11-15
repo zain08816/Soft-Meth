@@ -2,6 +2,10 @@ package Model.Extras;
 
 import javafx.scene.image.Image;
 
+/**
+ * Onion Extra
+ * @author Clarissa Hwang, Zain Ali
+ */
 public class Onion extends Extra {
     private final Image EXTRA_IMAGE = new Image("Images/onion.png", 150, 50, false, false);
     private final String EXTRA_NAME = "Onion";

@@ -1,7 +1,22 @@
 package Model;
 
+import javafx.scene.image.Image;
+
+/**
+ * Beef Sandwich
+ * @author Clarissa Hwang, Zain Ali
+ */
 public class Beef extends Sandwich {
     private final double BEEF_PRICE = 10.99;
+    private final Image BEEF_IMAGE = new Image("Images/beef.png", 150, 50, false, false);
+
+    /**
+     * Gets the image of beef
+     * @return beef image
+     */
+    public Image getImage() {
+        return BEEF_IMAGE;
+    }
 
     /**
      * Constructor for a Beef sandwich

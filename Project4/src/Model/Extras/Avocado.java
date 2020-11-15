@@ -2,6 +2,10 @@ package Model.Extras;
 
 import javafx.scene.image.Image;
 
+/**
+ * Avocado Extra
+ * @author Clarissa Hwang, Zain Ali
+ */
 public class Avocado extends Extra {
     private final Image EXTRA_IMAGE = new Image("Images/avocado.png", 150, 50, false, false);
     private final String EXTRA_NAME = "Avocado";

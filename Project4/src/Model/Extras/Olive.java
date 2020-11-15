@@ -2,6 +2,10 @@ package Model.Extras;
 
 import javafx.scene.image.Image;
 
+/**
+ * Olive Extra
+ * @author Clarissa Hwang, Zain Ali
+ */
 public class Olive extends Extra {
     private final Image EXTRA_IMAGE = new Image("Images/olive.png", 150, 50, false, false);
     private final String EXTRA_NAME = "Green olive";

@@ -1,7 +1,22 @@
 package Model;
 
+import javafx.scene.image.Image;
+
+/**
+ * Fish Sandwich
+ * @author Clarissa Hwang, Zain Ali
+ */
 public class Fish extends Sandwich {
     private final double FISH_PRICE = 12.99;
+    private final Image FISH_IMAGE = new Image("Images/fish.png", 150, 50, false, false);
+
+    /**
+     * Gets the image of fish
+     * @return fish image
+     */
+    public Image getImage() {
+        return FISH_IMAGE;
+    }
 
     /**
      * Constructor for a Fish Sandwich

@@ -1,5 +1,9 @@
 package Model;
 
+/**
+ * Orderline class for storing line items
+ * @author Clarissa Hwang, Zain Ali
+ */
 public class OrderLine {
     private int lineNumber;
     private Sandwich sandwich;
@@ -17,10 +21,11 @@ public class OrderLine {
 
     /**
      * Parameterized Constructor for OrderLine
-     * @param lineNumber line number
+     * @param line orderline
      */
-    public OrderLine(int lineNumber) {
-        this.lineNumber = lineNumber;
+    public OrderLine(OrderLine line) {
+        this.sandwich = line.getSandwich();
+        this.price = line.getPrice();
     }
 
     /**
@@ -37,6 +42,14 @@ public class OrderLine {
      */
     public int getLineNumber() {
         return lineNumber;
+    }
+
+    /**
+     * Get sandwich
+     * @return sandwich
+     */
+    public Sandwich getSandwich() {
+        return sandwich;
     }
 
     /**

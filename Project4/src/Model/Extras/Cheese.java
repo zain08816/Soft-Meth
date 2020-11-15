@@ -2,6 +2,10 @@ package Model.Extras;
 
 import javafx.scene.image.Image;
 
+/**
+ * Cheese Extra
+ * @author Clarissa Hwang, Zain Ali
+ */
 public class Cheese extends Extra {
     private final Image EXTRA_IMAGE = new Image("Images/cheese.png", 150, 50, false, false);
     private final String EXTRA_NAME = "Cheddar Cheese";

@@ -2,6 +2,10 @@ package Model.Extras;
 
 import javafx.scene.image.Image;
 
+/**
+ * Mushroom Extra
+ * @author Clarissa Hwang, Zain Ali
+ */
 public class Mushroom extends Extra {
     private final Image EXTRA_IMAGE = new Image("Images/mushroom.png", 150, 50, false, false);
     private final String EXTRA_NAME = "Mushroom";

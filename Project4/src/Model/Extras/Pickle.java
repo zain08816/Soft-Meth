@@ -2,6 +2,10 @@ package Model.Extras;
 
 import javafx.scene.image.Image;
 
+/**
+ * Pickle Extra
+ * @author Clarissa Hwang, Zain Ali
+ */
 public class Pickle extends Extra {
     private final Image EXTRA_IMAGE = new Image("Images/pickle.png", 150, 50, false, false);
     private final String EXTRA_NAME = "Dill Pickle";

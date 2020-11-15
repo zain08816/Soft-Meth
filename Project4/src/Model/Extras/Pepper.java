@@ -2,6 +2,10 @@ package Model.Extras;
 
 import javafx.scene.image.Image;
 
+/**
+ * Pepper Extra
+ * @author Clarissa Hwang, Zain Ali
+ */
 public class Pepper extends Extra {
     private final Image EXTRA_IMAGE = new Image("Images/pepper.png", 150, 50, false, false);
     private final String EXTRA_NAME = "Jalapeno Pepper";
