@@ -43,15 +43,11 @@ public class Order implements Customizable {
         OrderLine line = (OrderLine) obj;
         int toRemove = line.getLineNumber();
         if (toRemove-1 > orderlines.size()) return false;
-        if (orderlines.size() == 1) {
-            orderlines.remove(0);
-            return true;
-        }
-        for (int i = toRemove; i < orderlines.size(); i += 1) {
-            orderlines.get(i).setLineNumber(i);
-        }
-        orderlines.remove(lineNumber - 1);
+        orderlines.remove(toRemove - 1);
         lineNumber -= 1;
+        for (int i = 0; i < orderlines.size(); i += 1) {
+            orderlines.get(i).setLineNumber(i+1);
+        }
         return true;
     }
 
