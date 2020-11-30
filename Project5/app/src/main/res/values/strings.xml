@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">Project5</string>
+    <string name="app_name">New Jersey Museum Finder</string>
+    <string name="battleship_name">Battleship New Jersey</string>
+    <string name="battleship_desc">The Battleship New Jersey Museum and Memorial is open for tours on Saturdays and Sundays. Climb inside the 16-inch gun turret, track a tomahawk missile launch in the Combat Engagement Center, walk down Broadway and more! </string>
+    <string name="battleship_loc">Camden, New Jersey</string>
+    <string name="textview">Placeholder</string>
+    <string name="museums">Museums</string>
 </resources>
