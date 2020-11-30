@@ -1,8 +1,52 @@
 <resources>
     <string name="app_name">New Jersey Museum Finder</string>
+
     <string name="battleship_name">Battleship New Jersey</string>
     <string name="battleship_desc">The Battleship New Jersey Museum and Memorial is open for tours on Saturdays and Sundays. Climb inside the 16-inch gun turret, track a tomahawk missile launch in the Combat Engagement Center, walk down Broadway and more! </string>
     <string name="battleship_loc">Camden, New Jersey</string>
+    <string name="battleship_site">https://www.battleshipnewjersey.org</string>
+
+    <string name="sculpture_name">Grounds For Sculpture</string>
+    <string name="sculpture_desc">The perfect day trip! Grounds For Sculpture (GFS), located in Hamilton, New Jersey (midway between Philadelphia and New York), is a forty-two acre not-for-profit sculpture park and arboretum founded by Seward Johnson </string>
+    <string name="sculpture_loc">Hamilton, New Jersey</string>
+    <string name="sculpture_site">https://www.groundsforsculpture.org/</string>
+
+
+
+    <string-array name="museum_list">
+        <item>Battleship New Jersey</item>
+        <item>Grounds For Sculpture</item>
+        <item>Museum of NJ Maritime History</item>
+        <item>Newark Museum</item>
+        <item>Allaire State Park</item>
+        <item>Cape May Lighthouse</item>
+    </string-array>
+
+    <string-array name="tickets">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+
+
+
+
     <string name="textview">Placeholder</string>
     <string name="museums">Museums</string>
+    <string name="student">Student</string>
+    <string name="senior">Senior</string>
+    <string name="sub_total">Sub Total</string>
+    <string name="total">Total</string>
+    <string name="sales_tax_6_625">Sales Tax (6.625%)</string>
+    <string name="sub_price">$0</string>
+    <string name="tax_price">$0.00</string>
+    <string name="total_price">$0.00</string>
+    <string name="adult">Adult</string>
+    <string name="price">Price</string>
+    <string name="ticket_calculator">Ticket Calculator</string>
+
 </resources>

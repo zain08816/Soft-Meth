@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         museums = findViewById(R.id.museums);
-        museumsList = new String[]{getString(R.string.battleship_name)};
+        museumsList = getResources().getStringArray(R.array.museum_list);
 //        ArrayAdapter<String> museumAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,museumsList);
         ArrayAdapter<String> museumAdapter = new ArrayAdapter<>(this, R.layout.list_item, museumsList);
         museums.setAdapter(museumAdapter);
@@ -35,7 +35,24 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 //        String museum = museumsList[position];
 //        String museum = ((TextView) view).getText().toString();
 //        Toast.makeText(getApplicationContext(), "Clicked: " + museum, Toast.LENGTH_SHORT).show();
-        Intent newView = new Intent(MainActivity.this, Battleship.class);
-        MainActivity.this.startActivity(newView);
+        Intent newView;
+        switch(position){
+            case 0:
+                newView = new Intent(MainActivity.this, Battleship.class);
+                MainActivity.this.startActivity(newView);
+                break;
+            case 1:
+                newView = new Intent(MainActivity.this, Sculpture.class);
+                MainActivity.this.startActivity(newView);
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+        }
     }
 }

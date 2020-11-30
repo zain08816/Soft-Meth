@@ -18,11 +18,11 @@ import java.util.Locale;
 /**
  * @author Zain Ali, Clarissa Hwang
  */
-public class Battleship extends AppCompatActivity {
+public class Sculpture extends AppCompatActivity {
     private final double SALES_TAX = 0.06625;
-    private final int STUDENT_PRICE = 10;
-    private final int SENIOR_PRICE = 9;
-    private final int ADULT_PRICE = 15;
+    private final int STUDENT_PRICE = 6;
+    private final int SENIOR_PRICE = 0;
+    private final int ADULT_PRICE = 10;
 
     ImageView image;
     TextView desc;
@@ -69,13 +69,13 @@ public class Battleship extends AppCompatActivity {
         salesTax = findViewById(R.id.tax_price);
         totalPrice = findViewById(R.id.total_price);
 
-        location.setText(getString(R.string.battleship_loc));
-        desc.setText(getString(R.string.battleship_desc));
-        image.setImageResource(R.drawable.battleship);
+        location.setText(getString(R.string.sculpture_loc));
+        desc.setText(getString(R.string.sculpture_desc));
+        image.setImageResource(R.drawable.sculpture);
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri uri = Uri.parse(getString(R.string.battleship_site));
+                Uri uri = Uri.parse(getString(R.string.sculpture_site));
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
             }
@@ -156,3 +156,4 @@ public class Battleship extends AppCompatActivity {
 
     }
 }
+

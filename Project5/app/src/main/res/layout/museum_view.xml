@@ -6,6 +6,128 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
+    <Spinner
+        android:id="@+id/student_spinner"
+        android:layout_width="80dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/adult_spinner" />
+
+    <Spinner
+        android:id="@+id/senior_spinner"
+        android:layout_width="80dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/student_spinner" />
+
+    <TextView
+        android:id="@+id/student_text"
+        android:layout_width="100dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="center|right"
+        android:text="@string/student"
+        android:textColor="@color/purple_200"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/student_spinner"
+        app:layout_constraintTop_toBottomOf="@+id/adult_text" />
+
+    <TextView
+        android:id="@+id/senior_text"
+        android:layout_width="100dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="center|right"
+        android:text="@string/senior"
+        android:textColor="@color/purple_200"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/senior_spinner"
+        app:layout_constraintTop_toBottomOf="@+id/student_text" />
+
+    <TextView
+        android:id="@+id/sub_total"
+        android:layout_width="80dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="center|right"
+        android:text="@string/sub_total"
+        android:textColor="@color/purple_200"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/sub_price"
+        app:layout_constraintTop_toBottomOf="@+id/price_text" />
+
+    <TextView
+        android:id="@+id/total"
+        android:layout_width="80dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="center|right"
+        android:text="@string/total"
+        android:textColor="@color/purple_200"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/total_price"
+        app:layout_constraintTop_toBottomOf="@+id/sales_tax" />
+
+    <TextView
+        android:id="@+id/sales_tax"
+        android:layout_width="150dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="center|right"
+        android:text="@string/sales_tax_6_625"
+        android:textColor="@color/purple_200"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/tax_price"
+        app:layout_constraintTop_toBottomOf="@+id/sub_total" />
+
+    <TextView
+        android:id="@+id/sub_price"
+        android:layout_width="80dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="100dp"
+        android:gravity="center|left"
+        android:text="@string/sub_price"
+        android:textColor="@color/purple_200"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/price_text" />
+
+    <TextView
+        android:id="@+id/tax_price"
+        android:layout_width="80dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="100dp"
+        android:gravity="center|left"
+        android:text="@string/tax_price"
+        android:textColor="@color/purple_200"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sub_price" />
+
+    <TextView
+        android:id="@+id/total_price"
+        android:layout_width="80dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="100dp"
+        android:gravity="center|left"
+        android:text="@string/total_price"
+        android:textColor="@color/purple_200"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tax_price" />
+
     <ImageView
         android:id="@+id/museum_image"
         android:layout_width="180dp"
@@ -48,4 +170,54 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/museum_image"
         app:layout_constraintTop_toBottomOf="@+id/museum_image" />
+
+    <TextView
+        android:id="@+id/calculator_title"
+        android:layout_width="194dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="@string/ticket_calculator"
+        android:textColor="@color/purple_200"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/museum_desc" />
+
+    <Spinner
+        android:id="@+id/adult_spinner"
+        android:layout_width="80dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calculator_title" />
+
+    <TextView
+        android:id="@+id/adult_text"
+        android:layout_width="100dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="center|right"
+        android:text="@string/adult"
+        android:textColor="@color/purple_200"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/adult_spinner"
+        app:layout_constraintTop_toBottomOf="@+id/calculator_title" />
+
+    <TextView
+        android:id="@+id/price_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="176dp"
+        android:text="@string/price"
+        android:textColor="@color/purple_200"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calculator_title" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
