@@ -19,11 +19,11 @@ import java.util.Objects;
 /**
  * @author Zain Ali, Clarissa Hwang
  */
-public class Battleship extends AppCompatActivity {
+public class Maritime extends AppCompatActivity {
     private final double SALES_TAX = 0.06625;
-    private final int STUDENT_PRICE = 10;
-    private final int SENIOR_PRICE = 9;
-    private final int ADULT_PRICE = 15;
+    private final int STUDENT_PRICE = 4;
+    private final int SENIOR_PRICE = 2;
+    private final int ADULT_PRICE = 6;
 
     ImageView image;
     TextView desc;
@@ -55,6 +55,7 @@ public class Battleship extends AppCompatActivity {
         return true;
     }
 
+
     /**
      * Class on activity create
      * @param savedInstanceState previous state
@@ -81,11 +82,11 @@ public class Battleship extends AppCompatActivity {
         salesTax = findViewById(R.id.tax_price);
         totalPrice = findViewById(R.id.total_price);
 
-        location.setText(getString(R.string.battleship_loc));
-        desc.setText(getString(R.string.battleship_desc));
-        image.setImageResource(R.drawable.battleship);
+        location.setText(getString(R.string.maritime_loc));
+        desc.setText(getString(R.string.maritime_desc));
+        image.setImageResource(R.drawable.maritime);
         image.setOnClickListener(v -> {
-            Uri uri = Uri.parse(getString(R.string.battleship_site));
+            Uri uri = Uri.parse(getString(R.string.maritime_site));
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
         });
@@ -165,3 +166,4 @@ public class Battleship extends AppCompatActivity {
 
     }
 }
+

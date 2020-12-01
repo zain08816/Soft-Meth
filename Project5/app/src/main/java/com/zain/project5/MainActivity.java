@@ -8,8 +8,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -23,7 +21,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_main);
         museums = findViewById(R.id.museums);
         museumsList = getResources().getStringArray(R.array.museum_list);
-//        ArrayAdapter<String> museumAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,museumsList);
         ArrayAdapter<String> museumAdapter = new ArrayAdapter<>(this, R.layout.list_item, museumsList);
         museums.setAdapter(museumAdapter);
         museums.setOnItemClickListener(this);
@@ -31,10 +28,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//        String museum = parent.getItemAtPosition(position).toString();
-//        String museum = museumsList[position];
-//        String museum = ((TextView) view).getText().toString();
-//        Toast.makeText(getApplicationContext(), "Clicked: " + museum, Toast.LENGTH_SHORT).show();
         Intent newView;
         switch(position){
             case 0:
@@ -46,12 +39,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 MainActivity.this.startActivity(newView);
                 break;
             case 2:
+                newView = new Intent(MainActivity.this, Maritime.class);
+                MainActivity.this.startActivity(newView);
                 break;
             case 3:
+                newView = new Intent(MainActivity.this, Newark.class);
+                MainActivity.this.startActivity(newView);
                 break;
             case 4:
+                newView = new Intent(MainActivity.this, Allaire.class);
+                MainActivity.this.startActivity(newView);
                 break;
             case 5:
+                newView = new Intent(MainActivity.this, Lighthouse.class);
+                MainActivity.this.startActivity(newView);
                 break;
         }
     }

@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Locale;
+import java.util.Objects;
 
 /**
  * @author Zain Ali, Clarissa Hwang
@@ -21,7 +22,7 @@ import java.util.Locale;
 public class Sculpture extends AppCompatActivity {
     private final double SALES_TAX = 0.06625;
     private final int STUDENT_PRICE = 6;
-    private final int SENIOR_PRICE = 0;
+    private final int SENIOR_PRICE = 1;
     private final int ADULT_PRICE = 10;
 
     ImageView image;
@@ -44,6 +45,15 @@ public class Sculpture extends AppCompatActivity {
     double sales;
     double totalNum;
 
+    /**
+     * Go back
+     * @return true
+     */
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
+    }
 
     /**
      * Class on activity create
@@ -56,6 +66,8 @@ public class Sculpture extends AppCompatActivity {
         image = findViewById(R.id.museum_image);
         desc = findViewById(R.id.museum_desc);
         location = findViewById(R.id.museum_loc);
+
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         adultSpinner = findViewById(R.id.adult_spinner);
         studentSpinner = findViewById(R.id.student_spinner);
@@ -72,20 +84,17 @@ public class Sculpture extends AppCompatActivity {
         location.setText(getString(R.string.sculpture_loc));
         desc.setText(getString(R.string.sculpture_desc));
         image.setImageResource(R.drawable.sculpture);
-        image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Uri uri = Uri.parse(getString(R.string.sculpture_site));
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
-            }
+        image.setOnClickListener(v -> {
+            Uri uri = Uri.parse(getString(R.string.sculpture_site));
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
         });
 
         adultText.append(" ($" + ADULT_PRICE + ")");
         studentText.append(" ($" + STUDENT_PRICE + ")");
         seniorText.append(" ($" + SENIOR_PRICE + ")");
 
-        adultSpinner.setAdapter(new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item,
+        adultSpinner.setAdapter(new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item,
                 getResources().getStringArray(R.array.tickets)));
         adultSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -98,7 +107,7 @@ public class Sculpture extends AppCompatActivity {
                 updatePrice();
             }
         });
-        studentSpinner.setAdapter(new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item,
+        studentSpinner.setAdapter(new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item,
                 getResources().getStringArray(R.array.tickets)));
         studentSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -111,7 +120,7 @@ public class Sculpture extends AppCompatActivity {
                 updatePrice();
             }
         });
-        seniorSpinner.setAdapter(new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item,
+        seniorSpinner.setAdapter(new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item,
                 getResources().getStringArray(R.array.tickets)));
         seniorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -133,7 +142,7 @@ public class Sculpture extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Toast.makeText(getApplicationContext(), "Maximum of 5 tickets for each!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), getString(R.string.toast_message), Toast.LENGTH_SHORT).show();
     }
 
     /**
