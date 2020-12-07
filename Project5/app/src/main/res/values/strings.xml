@@ -4,20 +4,39 @@
     <string name="battleship_name">Battleship New Jersey</string>
     <string name="battleship_desc">The Battleship New Jersey Museum and Memorial is open for tours on Saturdays and Sundays. Climb inside the 16-inch gun turret, track a tomahawk missile launch in the Combat Engagement Center, walk down Broadway and more! </string>
     <string name="battleship_loc">Camden, New Jersey</string>
-    <string name="battleship_site">https://www.battleshipnewjersey.org</string>
+    <string name="battleship_site">https://www.battleshipnewjersey.org/</string>
 
     <string name="sculpture_name">Grounds For Sculpture</string>
     <string name="sculpture_desc">The perfect day trip! Grounds For Sculpture (GFS), located in Hamilton, New Jersey (midway between Philadelphia and New York), is a forty-two acre not-for-profit sculpture park and arboretum founded by Seward Johnson </string>
     <string name="sculpture_loc">Hamilton, New Jersey</string>
     <string name="sculpture_site">https://www.groundsforsculpture.org/</string>
 
+    <string name="maritime_name">Museum of NJ Maritime History</string>
+    <string name="maritime_desc">Welcome to the New Jersey Maritime Museum, located in Beach Haven on the southern end of Long Beach Island. We invite you to come visit us and explore the most extensive collection of maritime history and artifacts in the entire state of New Jersey! </string>
+    <string name="maritime_loc">Beach Haven, New Jersey</string>
+    <string name="maritime_site">https://njmaritimemuseum.org/</string>
+
+    <string name="newark_name">Newark Museum of Art</string>
+    <string name="newark_desc">The Newark Museum, New Jersey\'s largest museum, invites you to enjoy unforgettable experiences in the arts and natural sciences. Take an inspirational journey through 80 galleries of world-class collections, travel to the stars in our popular Planetarium, and stroll through our beautiful sculpture garden </string>
+    <string name="newark_loc">Newark, New Jersey</string>
+    <string name="newark_site">https://www.newarkmuseumart.org/</string>
+
+    <string name="allaire_name">Allaire State Park</string>
+    <string name="allaire_desc"> Spanning more than 3,000 acres, this state park is best known for its 19th-century iron-making town, Allaire Village, and antique steam trains. </string>
+    <string name="allaire_loc">Farmingdale, New Jersey</string>
+    <string name="allaire_site">https://www.state.nj.us/dep/parksandforests/parks/allaire.html</string>
+
+    <string name="lighthouse_name">Cape May Lighthouse</string>
+    <string name="lighthouse_desc"> The present tower, which is the third documented lighthouse at the southern tip of New Jersey, has been an aid-to-navigation for mariners and attraction for visitors since it was built in 1859.</string>
+    <string name="lighthouse_loc">Cape May, New Jersey</string>
+    <string name="lighthouse_site">https://capemaymac.org/experience/cape-may-lighthouse/</string>
 
 
     <string-array name="museum_list">
         <item>Battleship New Jersey</item>
         <item>Grounds For Sculpture</item>
         <item>Museum of NJ Maritime History</item>
-        <item>Newark Museum</item>
+        <item>Newark Museum of Art</item>
         <item>Allaire State Park</item>
         <item>Cape May Lighthouse</item>
     </string-array>
@@ -48,5 +67,6 @@
     <string name="adult">Adult</string>
     <string name="price">Price</string>
     <string name="ticket_calculator">Ticket Calculator</string>
+    <string name="toast_message">Maximum of 5 tickets for each!</string>
 
 </resources>
