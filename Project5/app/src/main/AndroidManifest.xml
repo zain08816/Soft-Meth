@@ -5,8 +5,8 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.Project5">
         <activity android:name=".MainActivity">
@@ -19,7 +19,15 @@
         <activity android:name=".Battleship"
                   android:label="@string/battleship_name"/>
         <activity android:name=".Sculpture"
-            android:label="@string/sculpture_name"/>
+                  android:label="@string/sculpture_name"/>
+        <activity android:name=".Maritime"
+                  android:label="@string/maritime_name"/>
+        <activity android:name=".Newark"
+                  android:label="@string/newark_name"/>
+        <activity android:name=".Allaire"
+                  android:label="@string/allaire_name"/>
+        <activity android:name=".Lighthouse"
+                  android:label="@string/lighthouse_name"/>
     </application>
 
 </manifest>
