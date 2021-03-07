@@ -1,2 +1,2 @@
-# Soft-Meth
+# Software Methodology
 Software Methodology Projects
